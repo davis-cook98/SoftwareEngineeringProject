@@ -13,7 +13,7 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 
 ## Further Reading
 - [Business Case](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/BusinessCase.md)
-- [System Diagram](https://drive.google.com/open?id=1HZCuloNeePhZkbV1fFhEAKZQDINW8cyj)
+- [System Diagram](https://drive.google.com/file/d/1HZCuloNeePhZkbV1fFhEAKZQDINW8cyj/view?usp=drives)
 - [Product Vision](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ProductVision.md)
 
 ## Glossary of Terms
