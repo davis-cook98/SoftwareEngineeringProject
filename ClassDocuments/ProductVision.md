@@ -1,4 +1,5 @@
 # Product Vision
-Our vision for this project is to make a reccomendation algorithm that helps students, faculty, and administrators see what resources our
-school has access to. It will be able to track where we got the source from, where it is now, what kind of media it is (text, database 
-subscription, movie, etc.), and who had it last. It will also offer more in depth controls for people with higher access levels.
+The vision for the product is that we will create a service that reccomends articles on colleges to the users.
+These reccomendations can be tailored to what the user wants via filters that the user can set. We will also
+push articles that are deemed important to all users and will use an internal reccomendation algorithm to 
+get new articles for the users.
