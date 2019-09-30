@@ -12,9 +12,9 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 > "... develop an interactive referral tool that will connect our customers and appropriate members, departments, and teams in their workforce with people, events, publications, projects, and other content of potential interest."
 
 ## Further Reading
-- [Business Case](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/BusinessCase.md)
+- [Business Case](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/BusinessCase.md)
 - [System Diagram](https://drive.google.com/file/d/1HZCuloNeePhZkbV1fFhEAKZQDINW8cyj/view?usp=drives)
-- [Product Vision](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ProductVision.md)
+- [Product Vision](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/ProductVision.md)
 
 ## Glossary of Terms
 For this product we have to define some frequently used terms. Those are:
