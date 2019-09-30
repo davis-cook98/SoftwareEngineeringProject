@@ -1,4 +1,16 @@
 # Business Case
-The plan for this project is to build a clone of ElasticSearch for use on our school. The reason we plan to do this is becasue we
-spend money on ElasticSearch each year and our group thinks that we can make a clone for free. We also believe that ours will be 
-more helpful because it is designed for our school and not as a general product.
+The plan for this project is to build a service that:
+- Students/ Parents
+- Commuinty Groups
+- School Officials
+
+can use to look at and compare schools. They will have to sign up for the website and will get information tailored 
+to which group they say they belong to.
+
+They will be able to look at:
+- News related to certain schools 
+- News related to  a certain topic or major
+- How schools are rated by different publications
+
+along with custom filters that they can set and will be saved along with their profile. This will allow for the 
+user to get only the information that they want to see.
