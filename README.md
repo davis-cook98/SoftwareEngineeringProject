@@ -18,8 +18,7 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 
 ## Glossary of Terms
 For this product we have to define some frequently used terms. Those are:
-- Database -a structured set of data held in a computer, especially one that is accessible in various ways.
-- Media -the main means of mass communication (broadcasting, publishing, and the Internet) regarded collectively.
-- Faculty -the teaching staff of a university or college, or of one of its departments or divisions, viewed as a body.
-- Administrator -a person responsible for running a business, organization, etc.
-- Lease -a contract by which one party conveys land, property, services, etc. to another for a specified time, usually in return for a periodic payment.
+- Sentiment: a view of or attitude toward a situation or event; an opinion.
+- College: will refer to both college and university for naming simplicity.
+- Community Group: a type of group or organisation that is created and operates for a specific purpose or to provide a specific service in a community for the public benefit of the members of the community
+- User: Families, Teachers, Community Groups
