@@ -7,6 +7,14 @@
 4. Mostafa Sabri
 5. Ryan Sogluizzo
 
+## Commands at start:
+This project usese pipenv for package management, removing the use for a requirements.txt file and making version control easier.
+1. install python 3+
+2. pip install pipenv
+3. cd /path/to/project
+4. pipenv install
+5. And your done :D
+
 ## Description
 This is a project done for Seton Hall's Software Engineering class. The goal of this product is to:
 > "... develop an interactive referral tool that will connect our customers and appropriate members, departments, and teams in their workforce with people, events, publications, projects, and other content of potential interest."
