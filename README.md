@@ -10,9 +10,9 @@
 ## Commands at start:
 This project usese pipenv for package management, removing the use for a requirements.txt file and making version control easier.
 1. install python 3+
-2. pip install pipenv
-3. cd /path/to/project
-4. pipenv install
+2. run `pip install pipenv` in the command line
+3. `cd /path/to/project`
+4. `pipenv install` 
 5. And your done :D
 
 ## Description
@@ -23,6 +23,8 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 - [Business Case](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/BusinessCase.md)
 - [System Diagram](https://drive.google.com/file/d/1HZCuloNeePhZkbV1fFhEAKZQDINW8cyj/view?usp=drives)
 - [Product Vision](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/ProductVision.md)
+- [Actors](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/Actors.md)
+- [Possible Risks](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/PossbileRisks.md)
 
 ## Glossary of Terms
 For this product we have to define some frequently used terms. Those are:
