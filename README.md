@@ -24,7 +24,7 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 - [System Diagram](https://drive.google.com/file/d/1HZCuloNeePhZkbV1fFhEAKZQDINW8cyj/view?usp=drives)
 - [Product Vision](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/ProductVision.md)
 - [Actors](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/Actors.md)
-- [Possible Risks](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/PossbileRisks.md)
+- [Possible Risks](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/PossibleRisks.md)
 
 ## Glossary of Terms
 For this product we have to define some frequently used terms. Those are:
