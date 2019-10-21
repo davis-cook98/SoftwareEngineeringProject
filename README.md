@@ -11,7 +11,7 @@
 This project will use:
 - MongoDB: A NoSQL database that uses a json-like structure. We chose this because, with our preferences, there will be many fields that are not populated for some users, and some that require multiple entries. A non-relational database seemed perfect for this task.
 - Python: Our backend for this project will be done in Python. We chose this becasue we plan to do a lot of data-science-like mainpulation on our data and Python thrives in that environment.
--Django: We will have our frontend in Django. We chose Django because it is written in python and also works nicely with MongoDB. 
+- Django: We will have our frontend in Django. We chose Django because it is written in python and also works nicely with MongoDB. 
 
 ## Commands at start:
 This project usese pipenv for package management, removing the use for a requirements.txt file and making version control easier.
