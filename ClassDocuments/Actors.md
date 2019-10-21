@@ -11,3 +11,4 @@ These are the actors that will be associated with our project.
 
 **5. Community Groups-** Groups in a schools area looking for community outreach and communal programs.
 
+**6. Administrative Users-** Users that have been granted specific rights that a common user does not have. These will be for debugging and ensuring the system works as expected
