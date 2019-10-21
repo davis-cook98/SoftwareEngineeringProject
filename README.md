@@ -25,6 +25,7 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 - [Product Vision](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/ProductVision.md)
 - [Actors](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/Actors.md)
 - [Possible Risks](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/PossibleRisks.md)
+- [Use Cases](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/UseCases.md)
 
 ## Glossary of Terms
 For this product we have to define some frequently used terms. Those are:
