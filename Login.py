@@ -4,11 +4,12 @@ import datetime
 
 from pymongo import MongoClient
 
-
+#Connect to DB
 client = MongoClient('localhost', 27017)
 
 db = client.SoftwareEngineering
 
+#Load an admin acc
 admin = {"Username": "admin", "Password": "password", #lol Equifax
 "FirstName": "Admin", "LastName": "McAdminerson", "Date": datetime.datetime.utcnow()} 
 Users = db.Users
@@ -23,11 +24,12 @@ def addPerson(user, passw):
                  }
     Users.insert_one(insertPers)
 
+#Setup Tkinter
 screen = Tk()
 screen.title("Login")
 screen.geometry("200x200")
 
-
+#If they login, check if creds are in db
 def run1():
     testName = username.get()
     testPass = password.get()
@@ -45,11 +47,13 @@ def run1():
 
 
 
-    
+#If they register, check if username is in db, if not register
 def run2():
     newUser = username.get()
     newPass = password.get()
-    if Users.find_one({"Username": newUser}) is not None:
+    if newUser == "" or newPass == "":
+        print("Fields cannot be blank")
+    elif Users.find_one({"Username": newUser}) is not None:
         print("Username taken, please change.")
     else:
         addPerson(newUser, newPass)
@@ -57,6 +61,7 @@ def run2():
         print("Click login to login :D")
     
 
+#More Tkinter setup
 login_text = Label(text = "Login")
 register_text = Label(text = "Register")
 username_text = Label(text = "Username")

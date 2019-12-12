@@ -3,12 +3,15 @@ import pymongo
 import datetime
 
 from pymongo import MongoClient
+
+#Connect to DB
 client = MongoClient('localhost', 27017)
 
 db = client.SoftwareEngineering
  
 ArtRepo = db.ArtRepo
 
+#Parse json made by NewsAPICall and insert into MongoDB
 def jsonParse(filename):
     with open("NewsFiles/" + filename + ".json") as jsonFile:
         data = json.load(jsonFile)
