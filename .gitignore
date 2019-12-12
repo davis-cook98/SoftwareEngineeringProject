@@ -108,3 +108,5 @@ client_secret.json
 
 
 *.json
+
+.vscode/
