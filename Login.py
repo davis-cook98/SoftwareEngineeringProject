@@ -7,12 +7,12 @@ from pymongo import MongoClient
 
 client = MongoClient('localhost', 27017)
 
-db = client.test_database
+db = client.SoftwareEngineering
 
 admin = {"Username": "admin", "Password": "password", #lol Equifax
 "FirstName": "Admin", "LastName": "McAdminerson", "Date": datetime.datetime.utcnow()} 
-people = db.people
-people.insert_one(admin)
+Users = db.Users
+Users.insert_one(admin)
 
 def addPerson(user, passw):
     insertPers = {"Username": user, 
@@ -21,7 +21,7 @@ def addPerson(user, passw):
                   "LastName": "", 
                   "Date": datetime.datetime.utcnow()
                  }
-    people.insert_one(insertPers)
+    Users.insert_one(insertPers)
 
 screen = Tk()
 screen.title("Login")
@@ -32,8 +32,7 @@ def run1():
     testName = username.get()
     testPass = password.get()
 
-
-    if(people.find_one({"Username": testName, "Password": testPass})) is None:
+    if(Users.find_one({"Username": testName, "Password": testPass})) is None:
         print("No user found, please check your credentials or register.")
     else:
         print("Logged in succesfully, welcome " + testName.capitalize())
@@ -42,6 +41,7 @@ def run1():
     # print(new_text)
     #print(username.get() + passw)
     password_entry.delete(0,END)
+    username_entry.delete(0,END)
 
 
 
@@ -49,8 +49,12 @@ def run1():
 def run2():
     newUser = username.get()
     newPass = password.get()
-    addPerson(newUser, newPass)
-    print("Registered, welcome")
+    if Users.find_one({"Username": newUser}) is not None:
+        print("Username taken, please change.")
+    else:
+        addPerson(newUser, newPass)
+        print("Registered, welcome")
+        print("Click login to login :D")
     
 
 login_text = Label(text = "Login")
