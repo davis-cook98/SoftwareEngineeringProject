@@ -10,6 +10,9 @@ pylint = "*"
 tweepy = "*"
 pymongo = "*"
 django = "*"
+requests = "*"
+pprint = "*"
+newsapi-python = "*"
 
 [requires]
 python_version = "3.8"
