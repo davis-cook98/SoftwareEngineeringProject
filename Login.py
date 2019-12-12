@@ -1,4 +1,27 @@
 from tkinter import *
+from MongoConnect import Connection
+import datetime
+
+from pymongo import MongoClient
+
+
+client = MongoClient('localhost', 27017)
+
+db = client.test_database
+
+admin = {"Username": "admin", "Password": "password", #lol Equifax
+"FirstName": "Admin", "LastName": "McAdminerson", "Date": datetime.datetime.utcnow()} 
+people = db.people
+people.insert_one(admin)
+
+def addPerson(user, passw):
+    insertPers = {"Username": user, 
+                  "Password": passw,
+                  "FirstName": "", 
+                  "LastName": "", 
+                  "Date": datetime.datetime.utcnow()
+                 }
+    people.insert_one(insertPers)
 
 screen = Tk()
 screen.title("Login")
@@ -6,15 +29,28 @@ screen.geometry("200x200")
 
 
 def run1():
-    new_text = "Logged in!"
-    print(new_text)
-    passw = password.get()
+    testName = username.get()
+    testPass = password.get()
+
+
+    if(people.find_one({"Username": testName, "Password": testPass})) is None:
+        print("No user found, please check your credentials or register.")
+    else:
+        print("Logged in succesfully, welcome " + testName.capitalize())
+
+    # new_text = "Logged in!"
+    # print(new_text)
+    #print(username.get() + passw)
     password_entry.delete(0,END)
+
+
 
     
 def run2():
-    new_text = "Registered!"
-    print(new_text)
+    newUser = username.get()
+    newPass = password.get()
+    addPerson(newUser, newPass)
+    print("Registered, welcome")
     
 
 login_text = Label(text = "Login")
