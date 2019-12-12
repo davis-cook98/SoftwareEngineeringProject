@@ -1,4 +1,4 @@
-## Glossary of Terms
+# Glossary of Terms
 For this product we have to define some frequently used terms. Those are:
 - Sentiment: a view of or attitude toward a situation or event; an opinion.
 - College: will refer to both college and university for naming simplicity.
