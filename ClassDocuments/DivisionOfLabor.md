@@ -1,5 +1,6 @@
 # Division of Labor
 #### DISCLAIMER (We all worked on the documentation equally. Davis commited all of them because he made the repo originally. Please take that into account when looking at commit history.)
+#### DISCLAIMER PT.2 (Anthony accidentally pushed a private key for almost all of his commits so they were scrubbed. He had more commits.)
 
 ### Davis: 
 - Worked on making everyone's part work together. 
