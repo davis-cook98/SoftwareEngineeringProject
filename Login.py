@@ -42,8 +42,8 @@ def run1():
     # new_text = "Logged in!"
     # print(new_text)
     #print(username.get() + passw)
-    password_entry.delete(0,END)
-    username_entry.delete(0,END)
+        password_entry.delete(0,END)
+        username_entry.delete(0,END)
 
 
 
