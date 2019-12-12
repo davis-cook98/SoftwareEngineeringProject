@@ -2,6 +2,8 @@ import requests
 import json
 import datetime
 
+from InsertData import jsonParse
+
 with open("../client_secret.json") as f:
     data = json.load(f)
 
@@ -19,7 +21,8 @@ dateString = str(now.year) + str(now.month) + str(now.day)
 
 jsonData = response.json()
 
-with open("../NewsFiles/" + dateString + ".json", "w") as dateFile:
+with open("NewsFiles/" + dateString + ".json", "w") as dateFile:
     json.dump(jsonData, dateFile)
 # print(response.json())
-    
+
+jsonParse(dateString)
