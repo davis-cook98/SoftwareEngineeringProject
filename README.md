@@ -33,3 +33,4 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 - [Possible Risks](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/PossibleRisks.md)
 - [Use Cases](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/UseCases.md)
 - [Glossary](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/Glossary.md)
+- [Division Of Labor](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/DivisionOfLabor.md)
