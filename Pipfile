@@ -9,10 +9,11 @@ pylint = "*"
 [packages]
 tweepy = "*"
 pymongo = "*"
-django = "*"
 requests = "*"
 pprint = "*"
 newsapi-python = "*"
+flask = "*"
+marshmallow = "*"
 
 [requires]
 python_version = "3.8"
