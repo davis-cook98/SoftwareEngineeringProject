@@ -13,13 +13,15 @@ This project will use:
 - Python: Our backend for this project will be done in Python. We chose this becasue we plan to do a lot of data-science-like mainpulation on our data and Python thrives in that environment.
 - Django: We will have our frontend in Django. We chose Django because it is written in python and also works nicely with MongoDB. 
 
-## Commands at start:
+## Commands to install:
 This project usese pipenv for package management, removing the use for a requirements.txt file and making version control easier.
 1. install python 3+
 2. run `pip install pipenv` in the command line
 3. `cd /path/to/project`
 4. `pipenv install` 
-5. And your done :D
+5. `cd /frontend`
+6. `yarn (or npm) install`
+7. And your done :D
 
 ## Description
 This is a project done for Seton Hall's Software Engineering class. The goal of this product is to:
