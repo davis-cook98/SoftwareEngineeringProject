@@ -130,5 +130,4 @@ yarn-error.log*
 #User Files
 client_secret.json
 
-
-*.json
+/Daily/GetData/NewsFiles/*
