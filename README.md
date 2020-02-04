@@ -10,8 +10,8 @@
 ## Stack
 This project will use:
 - MongoDB: A NoSQL database that uses a json-like structure. We chose this because, with our preferences, there will be many fields that are not populated for some users, and some that require multiple entries. A non-relational database seemed perfect for this task.
-- Python: Our backend for this project will be done in Python. We chose this becasue we plan to do a lot of data-science-like mainpulation on our data and Python thrives in that environment.
-- Django: We will have our frontend in Django. We chose Django because it is written in python and also works nicely with MongoDB. 
+- Flask: We will be making two Flask APIs, one for read and one for write. These APIs will communicate with our React front end.
+- React: We have our frontend for the project in React. React is a top js framework and will allow us to make a great web app with ease. 
 
 ## Commands to install:
 This project usese pipenv for package management, removing the use for a requirements.txt file and making version control easier.
@@ -20,7 +20,7 @@ This project usese pipenv for package management, removing the use for a require
 3. `cd /path/to/project`
 4. `pipenv install` 
 5. `cd /frontend`
-6. `yarn (or npm) install`
+6. `npm install`
 7. And your done :D
 
 ## Description
