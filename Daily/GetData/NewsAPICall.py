@@ -1,10 +1,39 @@
 import requests
 import json
 import datetime
+import pymongo
 
-from InsertData import jsonParse
+from pymongo import MongoClient
 
-with open("../client_secret.json") as f:
+#Connect to DB
+client = MongoClient('localhost', 27017)
+
+db = client.SoftwareEngineering
+ 
+ArtRepo = db.ArtRepo
+
+#Parse json made by NewsAPICall and insert into MongoDB
+def jsonParse(filename):
+
+    #with open("NewsFiles/" + filename + ".json") as jsonFile:
+    #    data = json.load(jsonFile)
+
+        articles = filename["articles"]
+
+        for article in articles:
+            title = article["title"]
+            description = article["description"]
+            date = article["publishedAt"]
+
+            insertArt = {"Title": title, 
+                    "Description": description,
+                    "Published": date, 
+                    "InsertTime": datetime.datetime.utcnow()
+                    }
+
+            ArtRepo.insert_one(insertArt)
+
+with open("../../client_secret.json") as f:
     data = json.load(f)
 
 #URL for get request
@@ -29,4 +58,4 @@ with open("NewsFiles/" + dateString + ".json", "w") as dateFile:
 # print(response.json())
 
 #Calls an aux function to insert the data
-jsonParse(dateString)
+jsonParse(jsonData)

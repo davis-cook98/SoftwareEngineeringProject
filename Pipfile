@@ -14,6 +14,9 @@ pprint = "*"
 newsapi-python = "*"
 flask = "*"
 marshmallow = "*"
+nltk = "*"
+numpy = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.8"
