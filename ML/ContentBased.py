@@ -44,7 +44,7 @@ results = {}
 
 for idx, row in df.iterrows():
     similar_indices = cosine_similarities[idx].argsort()[:-100:-1]
-    print(idx)
+#    print(idx)
     similar_items = [(cosine_similarities[idx][i], df['Title'][i]) for i in similar_indices]
 
     results[row['Title']] = similar_items[1:]
@@ -59,4 +59,4 @@ def recommend(title, num):
     for rec in recs:
         print("Recommended: " + str(rec))
 
-recommend(df.iloc[43,0], 5)
+recommend(df.iloc[10,0], 5)

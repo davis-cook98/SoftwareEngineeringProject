@@ -17,6 +17,7 @@ marshmallow = "*"
 nltk = "*"
 numpy = "*"
 scikit-learn = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.8"

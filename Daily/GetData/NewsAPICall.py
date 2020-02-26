@@ -53,8 +53,8 @@ dateString = str(now.year) + str(now.month) + str(now.day)
 jsonData = response.json()
 
 #Saves the output to json for processing
-with open("NewsFiles/" + dateString + ".json", "w") as dateFile:
-    json.dump(jsonData, dateFile)
+#with open("NewsFiles/" + dateString + ".json", "w") as dateFile:
+#    json.dump(jsonData, dateFile)
 # print(response.json())
 
 #Calls an aux function to insert the data
