@@ -7,21 +7,21 @@ class WriteConnect(object):
    self.db = MongoClient('localhost', 27017)
 
  #This should never be used because articles will be loaded and never edited. Made in case
- def createArticle(self, kudo):
+ def createArticle(self, article):
    return self.db.ArtRepo.insert_one(kudo)
 
- def updateArticle(self, selector, kudo):
+ def updateArticle(self, selector, article):
    return self.db.ArtRepo.replace_one(selector, kudo).modified_count
  
  def deleteArticle(self, selector):
    return self.db.ArtRepo.delete_one(selector).deleted_count
 
 #For creating new users
- def createUser(self, kudo):
+ def createUser(self, user):
    return self.db.Users.insert_one(kudo)
 
- def updateUser(self, selector, kudo):
+ def updateUser(self, user):
    return self.db.Users.replace_one(selector, kudo).modified_count
  
- def deleteUser(self, selector):
+ def deleteUser(self, user):
    return self.db.Users.delete_one(selector).deleted_count

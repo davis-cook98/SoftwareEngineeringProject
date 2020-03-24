@@ -1,9 +1,12 @@
 from marshmallow import Schema, fields
 
+#Schemas, may be updated later
 class ArticleSchema(Schema):
     id = fields.int(required=True)
     title = fields.Str()
     description = fields.Str()
+    published = fields.DateTime()
+    InsertTime = fields.DateTime()
 
 class UserSchema(Schema):
     id = fields.int(required=True)

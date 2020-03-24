@@ -22,18 +22,14 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems} from './listItems';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+    <Typography variant="body1" color="textSecondary" align="center">
+      <Link color="inherit" href="https://github.com/davis-cook98/SoftwareEngineeringProject">
+        View our code!
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
     </Typography>
   );
 }
@@ -171,16 +167,25 @@ export default function App() {
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
+                <Typography>
+                  News Feed
+                </Typography>
               </Paper>
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+                <Typography>
+                  Pushed Articles
+                </Typography>
                 </Paper>
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
+                <Typography>
+                  Saved Articles
+                </Typography>
               </Paper>
             </Grid>
           </Grid>
