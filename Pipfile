@@ -23,4 +23,4 @@ flask-cors = "==3.0.7"
 aiocron = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"
