@@ -19,7 +19,7 @@ numpy = "*"
 scikit-learn = "*"
 pandas = "*"
 pyjwt = "*"
-flask-cors = "*"
+flask-cors = "==3.0.7"
 aiocron = "*"
 
 [requires]
