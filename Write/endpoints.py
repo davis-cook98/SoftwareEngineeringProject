@@ -1,7 +1,10 @@
-@@ -12,30 +12,6 @@ CORS(app)
-def index():
- return json_response(Kudo(g.user).find_all_kudos())
+from .middlewares import login_required
+from flask import Flask, json, g, request
+from .Schemas import UserSchema, ArticleSchema
+from flask_cors import CORS
 
+app = Flask(__name__)
+CORS(app)
 
 @app.route("/kudos", methods=["POST"])
 @login_required

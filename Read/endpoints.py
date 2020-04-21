@@ -1,8 +1,7 @@
 from .middlewares import login_required
 from flask import Flask, json, g, request
-from Services import Service as
-from Schemas import UserSchema, ArticleSchema
-from flask_cors import flask_cors
+from .Schemas import UserSchema, ArticleSchema
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
