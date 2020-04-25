@@ -131,3 +131,5 @@ yarn-error.log*
 client_secret.json
 
 /Daily/GetData/NewsFiles/*
+
+.vscode/settings.json

@@ -60,3 +60,5 @@ def InsertData():
 
     #Calls an aux function to insert the data
     jsonParse(jsonData)
+
+InsertData()

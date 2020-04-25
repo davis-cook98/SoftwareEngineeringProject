@@ -21,6 +21,7 @@ pandas = "*"
 pyjwt = "*"
 flask-cors = "==3.0.7"
 aiocron = "*"
+schedule = "*"
 
 [requires]
 python_version = "3.7"
