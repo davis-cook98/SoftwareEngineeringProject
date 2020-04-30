@@ -15,5 +15,9 @@ class APIClient {
   constructor(accessToken) {
     this.accessToken = accessToken;
   }
-  
+
+getShow() {
+  return this.perform('get', '/show');
+
+}
 }
