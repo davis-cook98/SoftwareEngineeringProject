@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route("/kudos", methods=["POST"])
 @login_required
-def create():
+def createArticle():
    article_repo = ArticleSchema().load(json.loads(request.data))
 
    if article_repo.errors:
@@ -19,7 +19,7 @@ def create():
 
    @app.route("/kudos", methods=["POST"])
    @login_required
-   def create():
+   def createUser():
       user_repo = UserSchema().load(json.loads(request.data))
 
       if user_repo.errors:
@@ -31,7 +31,7 @@ def create():
 
 @app.route("/kudo/<int:repo_id>", methods=["PUT"])
 @login_required
-def update(repo_id):
+def updateArticle(repo_id):
    article_repo = ArticleSchema().load(json.loads(request.data))
 
    if article_repo.errors:
@@ -45,7 +45,7 @@ def update(repo_id):
 
      @app.route("/kudo/<int:repo_id>", methods=["PUT"])
      @login_required
-     def update(repo_id):
+     def updateUser(repo_id):
         user_repo = UserSchema().load(json.loads(request.data))
 
         if user_repo.errors:

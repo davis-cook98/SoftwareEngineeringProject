@@ -18,6 +18,9 @@ class APIClient {
 
 getShow() {
   return this.perform('get', '/show');
+}
 
+updateShow() {
+  return this.perform('put', '/show');
 }
 }
