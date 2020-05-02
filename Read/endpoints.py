@@ -1,10 +1,16 @@
 from .middlewares import login_required
 from flask import Flask, json, g, request
 from .Schemas import UserSchema, ArticleSchema
+from .ReadMongo import ReadConnect as Read
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+@app.route("/", methods=["GET"])
+def test():
+  return json_response(Read(g.user).findAllArticles)
+
 
 @app.route("/kudos", methods=["GET"])
 @login_required

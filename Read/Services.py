@@ -1,22 +1,21 @@
-from ..Read.ReadMongo import ReadConnect
-from ..Write.WriteMongo import WriteConnect
+from .ReadMongo import ReadConnect
 from .Schemas import ArticleSchema, UserSchema
 
 class Service(object):
-    def __init__(self, user_id, repo_client=ReadConnect(adapter=WriteConnect)):
-        slef.repo_client = repo_client
-        self.user_id
+    def __init__(self, user_id, repo_client=ReadConnect):
+        self.repo_client = repo_client
+        self.user_id = user_id
 
         if not user_id:
             raise Exception("user id not provided")
 
     def find_all_kudos(self):
-        kudos = self.repo_client.find_all({'user_id': self.user_id, 'repo_id':repo_id})
+        kudos = self.repo_client.find_all({'user_id': self.user_id})
         return [self.dump(kudo) for kudo in kudos]
 
     def find_kudo(self, repo_id):
         kudo = self.repo_client.find({'user_id': self.user_id, 'repo_id': repo_id})
-        return slef.dump(kudo)
+        return self.dump(kudo)
 
     def create_kudo_for(self, ReadConnect):
         self.repo_client.create(self.prepare_kudo(ReadConnect))
@@ -31,7 +30,7 @@ class Service(object):
         return records_affected > 0
 
     def dump(self, data):
-        return KudoSchema(exclude=['_id']).dump(data).data
+        return ArticleSchema(exclude=['_id']).dump(data).data
 
     def prepare_kudo(self, ReadConnect):
         data = ReadConnect.data
