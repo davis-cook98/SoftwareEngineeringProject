@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from .middlewares import login_required
 from flask import Flask, json, g, request
 from .Schemas import ArticleSchema
-from .ReadMongo import ReadConnect as Read
+from .WriteMongo import WriteConnect as Write
 from flask_cors import CORS
 from flask import request
 import re
