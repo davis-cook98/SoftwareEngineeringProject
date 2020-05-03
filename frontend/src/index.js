@@ -2,20 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
+    Route
   } from "react-router-dom";
 import './index.css';
 import App from './App';
-import SignUp from './Login'
+import { Security, LoginCallback } from '@okta/okta-react';
 import * as serviceWorker from './serviceWorker';
+
+const CALLBACK_PATH = '/implicit/callback';
 
 const routing = (
     <Router>
-        <div>
             <Route exact path="/" component={App} />
-            <Route path="/login" component={SignUp} />
-        </div>
+            <Route path={CALLBACK_PATH} component={LoginCallback} />
     </Router>
 )
 

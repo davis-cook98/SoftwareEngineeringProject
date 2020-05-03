@@ -3,11 +3,10 @@ from marshmallow import Schema, fields
 #Schemas, may be updated later
 class ArticleSchema(Schema):
     id = fields.Int(required=True)
-    title = fields.Str()
-    author = fields.Str()
-    description = fields.Str()
-    published = fields.DateTime()
-    InsertTime = fields.DateTime()
+    Title = fields.Str()
+    Description = fields.Str()
+    Published = fields.Str()
+    InsertTime = fields.Date()
 
 class UserSchema(Schema):
     id = fields.Int(required=True)
@@ -15,5 +14,5 @@ class UserSchema(Schema):
     LastName = fields.Str()
     Username = fields.Str()
     Password = fields.Str()
-    LastLogin = fields.DateTime()
+    LastLogin = fields.Date()
 

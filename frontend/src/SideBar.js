@@ -8,7 +8,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
 import StarIcon from '@material-ui/icons/Star';
-import { Link } from 'react-router-dom';
+import Login from './Login';
+import { useOktaAuth } from '@okta/okta-react';
 
 export const mainListItems = (
     <div>
@@ -34,7 +35,7 @@ export const mainListItems = (
         <ListItemIcon>
           <PeopleIcon />
         </ListItemIcon>
-        <ListItemText primary="Login" component={Link} to="/login" />
+        <ListItemText primary="Login"/>
       </ListItem>
       <ListItem button>
         <ListItemIcon>

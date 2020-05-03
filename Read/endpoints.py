@@ -2,9 +2,11 @@ import pymongo
 from pymongo import MongoClient
 from .middlewares import login_required
 from flask import Flask, json, g, request
-from .Schemas import UserSchema, ArticleSchema
+from .Schemas import ArticleSchema
 from .ReadMongo import ReadConnect as Read
 from flask_cors import CORS
+from flask import request
+import re
 
 #Connect to DB
 client = MongoClient('localhost', 27017)
@@ -16,9 +18,10 @@ CORS(app)
 
 #decorators
 @app.route('/')
-@app.route('/ReadAPI')
+@app.route('/ReadAPI/')
 def getSingleArticle():
-    return get_article("college")
+    title = request.args.get('title')
+    return get_article(title)
 
 @app.route('/ReadAPI')
 def getAllArticles(title):
@@ -26,8 +29,12 @@ def getAllArticles(title):
 
 
 #definitions
+def get_article2():
+    return ArticleSchema().dump(ArtRepo.find_one())
+
 def get_article(title):
-    return (ArtRepo.find_one({"title" : title}))
+    query = re.compile("^" + title, re.IGNORECASE)
+    return ArticleSchema().dump(ArtRepo.find_one({"Title": query}))
     
 
 def get_articles(title):
