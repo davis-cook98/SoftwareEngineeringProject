@@ -1,5 +1,6 @@
 import pymongo
 from pymongo import MongoClient
+from pymongo import ReturnDocument
 from .middlewares import login_required
 from flask import Flask, json, g, request
 from .Schemas import ArticleSchema
@@ -7,6 +8,7 @@ from .WriteMongo import WriteConnect as Write
 from flask_cors import CORS
 from flask import request
 import re
+
 
 #Connect to DB
 client = MongoClient('localhost', 27017)
@@ -20,15 +22,26 @@ CORS(app)
 @app.route('/')
 @login_required
 @app.route('/WriteAPI', methods = ['GET', 'POST'])
-def addFavorite():
+def addFavorite(name, title):
     title = request.args.get('title')
-    return make_favorite(title)
+    return add_favorite(name, title)
+
+@app.route('/WriteAPI', methods = ['GET', 'POST'])
+def removeFavorite(name, title):
+    title = request.args.get('title')
+    return remove_favorite(name, title)
+
 
 
 #definitions
-def make_favorite(title):
-    title = request.args.get('title') #I think this is redundent because it takes in title as a parameter
-    description = request.args.get('description')
-    published = request.args.get('published')
-    InsertTime = request.args.get('InsertTime')
-    return updateList(title, description, published, InsertTime)
+def add_favorite(name, title):
+    query = re.compile("^" + title, re.IGNORECASE)
+    whoFavorited = ArticleSchema().dump(ArtRepo.find_one({"Title": query}))["favorited"]
+    newFavorites = whoFavorited + " " + name
+    return ArticleSchema().dump(ArtRepo.find_one_and_update({"Title": query},{'favorited': newFavorites}, return_document=ReturnDocument.AFTER))
+
+def remove_favorite(name, title):
+    query = re.compile("^" + title, re.IGNORECASE)
+    whoFavorited = ArticleSchema().dump(ArtRepo.find_one({"Title": query}))["favorited"]
+    newFavorites = whoFavorited.replace(name, "")
+    newFavorites = ' '.join(newFavorites.split())

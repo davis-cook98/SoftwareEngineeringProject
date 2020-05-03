@@ -7,6 +7,7 @@ class ArticleSchema(Schema):
     Description = fields.Str()
     Published = fields.Str()
     InsertTime = fields.Date()
+    favorited = fields.Str()
 
 class UserSchema(Schema):
     id = fields.Int(required=True)
