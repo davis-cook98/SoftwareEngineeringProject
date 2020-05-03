@@ -4,6 +4,7 @@ from marshmallow import Schema, fields
 class ArticleSchema(Schema):
     id = fields.Int(required=True)
     title = fields.Str()
+    author = fields.Str()
     description = fields.Str()
     published = fields.DateTime()
     InsertTime = fields.DateTime()
