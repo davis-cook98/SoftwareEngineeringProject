@@ -38,5 +38,5 @@ def get_article(title):
     
 
 def get_articles(title):
-    for article in ArtRepo.find({"title" : title}):
-        return article
+    for article in ArtRepo.find({"Title" : title}):
+        return ArticleSchema().dump(article)
