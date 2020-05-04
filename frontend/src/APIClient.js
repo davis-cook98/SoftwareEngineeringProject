@@ -5,22 +5,38 @@ const READ_URI = 'http://localhost:4433';
 const WRITE_URI = 'http://localhost:4433/WRITE';
 
 
-const clientREAD = axios.create(readURL: READ_URI,
-json: true});
-
-const clientWrite = axios.create(writeURL: WRITE_URI,
-json: true});
-
 class APIClient {
   constructor(accessToken) {
     this.accessToken = accessToken;
   }
 
-getShow() {
-  return this.perform('get', '/show');
+getSingleArticle() {
+  return this.perform('get', '/ReadApi/getOne/');
 }
 
-updateShow() {
-  return this.perform('put', '/show');
+getAllArticles() {
+  return this.perform('get', '/ReadAPI/getAll/');
 }
+
+addfavorite() {
+  return this.perform('post', '/WriteAPI/addFavorite/')
 }
+
+removeFavorite() {
+  return this.perform('post', '/WriteAPI/removeFavorite/')
+}
+async perform (method, resource, data) {
+   return client({
+     method,
+     url: resource,
+     data,
+     headers: {
+       Authorization: `Bearer ${this.accessToken}`
+     }
+   }).then(resp => {
+     return resp.data ? resp.data : [];
+   })
+ }
+}
+
+export default APIClient;
