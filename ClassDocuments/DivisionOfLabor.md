@@ -4,6 +4,7 @@
 #### DISCLAIMER PT.3 (For a lot of the coding, many of us had never worked with this stack before. We spent a lot of time over Teams working on the code, but Davis mainly handled the typing because he had the most experience. The commit history is not an accurate representation of the division of labor, all group members contributed equally.)
 
 ### Davis: 
+- Created and put together the front end application.
 - Worked on making everyone's part work together. 
 - Helped each member with how to implement their parts because he is the most familliar with Python and because he has the most experience with programming projects. 
 - Led the group's choices with certain implementation strategies.
