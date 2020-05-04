@@ -20,8 +20,9 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import { mainListItems} from './SideBar';
-import 
+import articlesList from './ArticlesList';
 
 function Copyright() {
   return (
@@ -170,16 +171,17 @@ export default function App() {
                   News Feed
                 </Typography>
                 <ExpansionPanel>
-        <ExpansionPanelSummary
+                <articlesList />
+        {/* <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Sample article</Typography>
+          <Typography className={classes.heading}>Sample pop</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+            pot ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>
         </ExpansionPanelDetails>
@@ -197,7 +199,7 @@ export default function App() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
           </Typography>
-        </ExpansionPanelDetails>
+        </ExpansionPanelDetails> */}
       </ExpansionPanel>
               </Paper>
             </Grid>

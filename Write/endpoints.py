@@ -14,18 +14,18 @@ db = client.SoftwareEngineering
 ArtRepo = db.ArtRepo
 UserRepo = db.UserRepo
 
-app = Flask(__name__)
-CORS(app)
+write = Flask(__name__)
+CORS(write)
 
 #decorators
-@app.route('/WriteAPI/addUser/', methods = ['GET', 'POST'])
+@write.route('/WriteAPI/addUser/', methods = ['GET', 'POST'])
 def addUser():
     username = request.args.get('username')
     password = request.args.get('password')
     return add_User(username, password)
 
 @login_required
-@app.route('/WriteAPI/toggleFavorite/', methods = ['GET', 'POST'])
+@write.route('/WriteAPI/toggleFavorite/', methods = ['GET', 'POST'])
 def toggleFavorite():
     title = request.args.get('title')
     name = request.args.get('name')
@@ -53,3 +53,6 @@ def toggle_favorite(uname, title):
         userFavs.append(artId)
         UserSchema().dump(UserRepo.find_one_and_update({"Username": uname}, {"$set": {"Favorites": userFavs}}, return_document=ReturnDocument.AFTER))
         return("Article favorited")
+
+if __name__ == "__main__":
+    write.run()

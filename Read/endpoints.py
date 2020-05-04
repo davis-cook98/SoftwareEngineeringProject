@@ -1,7 +1,7 @@
 import pymongo
 from pymongo import MongoClient
 from .middlewares import login_required
-from flask import Flask, json, g, request
+from flask import Flask, json, jsonify, g, request
 from .Schemas import ArticleSchema
 from flask_cors import CORS
 from flask import request
@@ -11,17 +11,16 @@ import re
 client = MongoClient('localhost', 27017)
 db = client.SoftwareEngineering 
 ArtRepo = db.ArtRepo
-app = Flask(__name__)
-CORS(app)
+read = Flask(__name__)
+CORS(read)
 
 #decorators
-@app.route('/')
-@app.route('/ReadAPI/getOne/')
+@read.route('/ReadAPI/getOne/')
 def getSingleArticle():
     title = request.args.get('title')
     return get_article(title)
 
-@app.route('/ReadAPI/getAll/')
+@read.route('/ReadAPI/getAll/')
 def getAllArticles():
     title = request.args.get('title')
     return get_articles(title)
@@ -37,5 +36,18 @@ def get_article(title):
     
 
 def get_articles(title):
-    for article in ArtRepo.find({"Title" : title}):
-        return ArticleSchema().dump(article)
+    allArticles = []
+    if str(title) == "":
+        for article in ArtRepo.find({},limit=5):
+            allArticles.append(article)
+    else:
+        query = re.compile("^" + title, re.IGNORECASE)
+        for article in ArtRepo.find({"Title" : query},limit=5):
+            allArticles.append(article)
+    
+    results = ArticleSchema().dump(allArticles, many=True)
+
+    return(jsonify(results))
+
+if __name__ == "__main__":
+    read.run()
