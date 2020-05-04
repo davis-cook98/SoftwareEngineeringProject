@@ -17,12 +17,12 @@ CORS(app)
 
 #decorators
 @app.route('/')
-@app.route('/ReadAPI/getOne')
+@app.route('/ReadAPI/getOne/')
 def getSingleArticle():
     title = request.args.get('title')
     return get_article(title)
 
-@app.route('/ReadAPI/getAll')
+@app.route('/ReadAPI/getAll/')
 def getAllArticles(title):
     return get_articles(title)
 
