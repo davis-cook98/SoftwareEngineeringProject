@@ -23,7 +23,8 @@ def getSingleArticle():
     return get_article(title)
 
 @app.route('/ReadAPI/getAll/')
-def getAllArticles(title):
+def getAllArticles():
+    title = request.args.get('title')
     return get_articles(title)
 
 
