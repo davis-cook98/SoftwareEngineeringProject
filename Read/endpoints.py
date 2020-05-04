@@ -11,7 +11,6 @@ import re
 client = MongoClient('localhost', 27017)
 db = client.SoftwareEngineering 
 ArtRepo = db.ArtRepo
-
 app = Flask(__name__)
 CORS(app)
 

@@ -29,7 +29,6 @@ def jsonParse(filename):
                     "Description": description,
                     "Published": date, 
                     "InsertTime": datetime.datetime.utcnow(),
-                    "favorited": ""
                     }
 
             ArtRepo.insert_one(insertArt)
