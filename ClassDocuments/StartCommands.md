@@ -4,7 +4,7 @@
 
 1. cd <mongodb installation dir>/bin
 2. mongo
-3. user SoftwareEngineering
+3. use SoftwareEngineering
 4. db.createCollection("ArtRepo",{capped:true, size:50000})
 5. exit
 6. mongod
@@ -19,12 +19,7 @@
 ## To start the Flask APIs
 
 1. cd <project installation dir>
-2. cd Read/Write
-3. set FLASK_APP=endpoints.py
-4. pipenv run flask run --port 5000
-5. (in another window) cd <the other API>
-6. pipenv run flask run --port 5001
-7. (Remember which one you picked for each)
+2. pipenv run python RunBoth.py
 
 ## To start the React app
 
@@ -32,3 +27,10 @@
 2. cd frontend
 3. npm run start-pc (make sure you have your env vars set in this command)
 4. SAMPLE COMMAND: "start-pc": "set CLIENT_ID=(Your client ID) OKTA_DOMAIN=(Your Okta domain)/ PORT=8080&& react-scripts start"
+  
+## To Bulk Load
+
+1. cd <project installation dir>
+2. cd DailyServer
+3. cd GetData
+4. pipenv run python BulkLoad.py (may have to update hard-coded dates)
