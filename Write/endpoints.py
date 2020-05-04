@@ -18,16 +18,18 @@ app = Flask(__name__)
 CORS(app)
 
 #decorators
-@app.route('/')
 @login_required
 @app.route('/WriteAPI/addFavorite/', methods = ['GET', 'POST'])
-def addFavorite(name, title):
+def addFavorite():
     title = request.args.get('title')
+    name = request.args.get('name')
     return add_favorite(name, title)
 
+@login_required
 @app.route('/WriteAPI/removeFavorite/', methods = ['GET', 'POST'])
-def removeFavorite(name, title):
+def removeFavorite():
     title = request.args.get('title')
+    name = request.args.get('name')
     return remove_favorite(name, title)
 
 
@@ -37,7 +39,7 @@ def add_favorite(name, title):
     query = re.compile("^" + title, re.IGNORECASE)
     whoFavorited = ArticleSchema().dump(ArtRepo.find_one({"Title": query}))["favorited"]
     newFavorites = whoFavorited + " " + name
-    return ArticleSchema().dump(ArtRepo.find_one_and_update({"Title": query}, {'favorited': newFavorites}, return_document=ReturnDocument.AFTER))
+    return ArticleSchema().dump(ArtRepo.find_one_and_update({"Title": query}, {'$set': {'favorited': newFavorites}}, return_document=ReturnDocument.AFTER))
 
 def remove_favorite(name, title):
     query = re.compile("^" + title, re.IGNORECASE)
@@ -45,6 +47,6 @@ def remove_favorite(name, title):
     if name in whoFavorited:
         newFavorites = whoFavorited.replace(name, "")
         newFavorites = ' '.join(newFavorites.split())
-        return ArticleSchema().dump(ArtRepo.find_one_and_update({"Title": query}, {'favorited': newFavorites}, return_document=ReturnDocument.AFTER))
+        return ArticleSchema().dump(ArtRepo.find_one_and_update({"Title": query}, {'$set' : {'favorited': newFavorites}}, return_document=ReturnDocument.AFTER))
     else:
         return "User not favorited"
