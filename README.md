@@ -36,6 +36,7 @@ This is a project done for Seton Hall's Software Engineering class. The goal of 
 - [Use Cases](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/UseCases.md)
 - [Glossary](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/Glossary.md)
 - [Division Of Labor](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/DivisionOfLabor.md)
-- [Powerpoint](https://docs.google.com/presentation/d/1q5b-H8_8FfPkXVN_Z3AiSUHFidZ5bEdCcXDs3_FsikU/edit?usp=sharing)
+- [Powerpoint](https://docs.google.com/presentation/d/1CZISbuQ20FSddLLVG1wBdTyhaj9lW6MEP3AHOsRnbOc/edit?usp=sharing)
 - [Flow Diagram](https://drive.google.com/open?id=1wGxzaK5qQFW2CbtcsnboFSWsJDfCji2r)
+- [Start Commands](https://github.com/davis-cook98/SoftwareEngineeringProject/blob/master/ClassDocuments/StartCommands.md)
 
