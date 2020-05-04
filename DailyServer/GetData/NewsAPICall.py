@@ -25,13 +25,11 @@ def jsonParse(filename):
             description = article["description"]
             date = article["publishedAt"]
 
-            insertArt = {"Title": title, 
-                    "Description": description,
+            ArtRepo.update_one({"Title": title},
+                    {"Description": description,
                     "Published": date, 
-                    "InsertTime": datetime.datetime.utcnow(),
-                    }
-
-            ArtRepo.insert_one(insertArt)
+                    "InsertTime": datetime.datetime.utcnow()},
+                     upsert=True)
 
 def InsertData():
     with open("../../client_secret.json") as f:
@@ -46,10 +44,6 @@ def InsertData():
             'apiKey=' + data["NewsApi"])
 
     response = requests.get(url)
-
-    #Gets a nice name for a file
-    now = datetime.datetime.now()
-    dateString = str(now.year) + str(now.month) + str(now.day)
 
     jsonData = response.json()
 

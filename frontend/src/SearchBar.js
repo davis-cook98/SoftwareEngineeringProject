@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import { withAuth } from '@okta/okta-react';
 
 const styles = theme => ({
   root: {
@@ -19,15 +18,8 @@ const styles = theme => ({
   grow: {
     flexGrow: 1,
   },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
@@ -73,19 +65,13 @@ const styles = theme => ({
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.logout = this.logout.bind(this);
-  }
-
-  async logout(e) {
-    e.preventDefault();
-    this.props.auth.logout('/');
   }
 
   render() {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={styles("").root}>
         <AppBar position="static" style={{alignItems: 'center'}}>
           <Toolbar>
             <div className={classes.search}>
@@ -93,7 +79,7 @@ class SearchBar extends React.Component {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search for your OOS project on Github + Press Enter"
+                placeholder="Search for an Article"
                 onKeyPress={this.props.onSearch}
                 classes={{
                   root: classes.inputRoot,
@@ -102,10 +88,10 @@ class SearchBar extends React.Component {
               />
             </div>
             <div className={classes.grow} />
-            <Button onClick={this.logout} color="inherit">Logout</Button>
+            <Button color="inherit">Logout</Button>
           </Toolbar>
         </AppBar>
-        <SearchBar auth={this.props.auth} onSearch={this.onSearch} />
+        <SearchBar onSearch={this.onSearch} />
       </div>
     );
   }
@@ -115,4 +101,4 @@ SearchBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(withAuth(SearchBar));
+export default withStyles(styles)(SearchBar);

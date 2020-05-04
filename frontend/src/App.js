@@ -20,9 +20,9 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import SearchBar from './SearchBar';
 import { mainListItems} from './SideBar';
-import articlesList from './ArticlesList';
+import ArticlesList from './ArticlesList';
 
 function Copyright() {
   return (
@@ -164,21 +164,19 @@ export default function App() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <Typography>
                   News Feed
                 </Typography>
                 <ExpansionPanel>
-                <articlesList />
         {/* <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header"
-        >
-          <Typography className={classes.heading}>Sample pop</Typography>
-        </ExpansionPanelSummary>
+        > */}
+          <ArticlesList />
+        {/* </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>
             pot ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
@@ -192,9 +190,9 @@ export default function App() {
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography className={classes.heading}>Sample article</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+          <Typography className={classes.heading}>Sample article</Typography> */}
+        {/* </ExpansionPanelSummary> */}
+        {/* <ExpansionPanelDetails>
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
             sit amet blandit leo lobortis eget.
