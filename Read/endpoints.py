@@ -11,6 +11,8 @@ import re
 client = MongoClient('localhost', 27017)
 db = client.SoftwareEngineering
 ArtRepo = db.ArtRepo
+UserRepo = db.UserRepo
+
 read = Flask(__name__)
 CORS(read)
 
@@ -27,8 +29,9 @@ def getAllArticles():
 
 @read.route('/ReadAPI/findUser/')
 def findUser():
-    title = request.args.get('title')
-    return
+    uname = request.args.get('username')
+    pword = request.args.get('password')
+    return find_User(uname, pword)
 
 
 #definitions
@@ -40,7 +43,14 @@ def get_article(title):
     return ArticleSchema().dump(ArtRepo.find_one({"Title": query}))
 
 
-def find_User(username, password):
+def find_User(uname, pword):
+    username = re.compile("^" + uname, re.IGNORECASE)
+    response = UserRepo.find_one({"Username": username, "Password": pword})
+    if response is None:
+        return "User does not exist"
+    else:
+        return "True"
+
     
 
 def get_articles(title):
