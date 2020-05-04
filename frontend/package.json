@@ -10,8 +10,9 @@
     "@testing-library/react": "^10.0.3",
     "@testing-library/user-event": "^10.0.2",
     "axios": "^0.19.2",
-    "react": "next",
-    "react-dom": "next",
+    "dotenv": "^8.2.0",
+    "react": "0.0.0-d7382b6c4",
+    "react-dom": "0.0.0-d7382b6c4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1"
   },

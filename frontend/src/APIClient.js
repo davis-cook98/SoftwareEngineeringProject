@@ -1,8 +1,9 @@
-import axios from 'axios' ;
+import axios from 'axios';
+
+const axios = require('axios');
 
 
-const READ_URI = 'http://localhost:4433';
-const WRITE_URI = 'http://localhost:4433/WRITE';
+const READ_URI = 'http://localhost:500';
 
 
 class APIClient {
@@ -11,15 +12,15 @@ class APIClient {
   }
 
 getSingleArticle() {
-  return this.perform('get', '/ReadApi/getOne/');
+  return this.perform('get', '0/ReadAPI/getOne/');
 }
 
 getAllArticles() {
-  return this.perform('get', '/ReadAPI/getAll/');
+  return this.perform('get', '0/ReadAPI/getAll/');
 }
 
 addfavorite() {
-  return this.perform('post', '/WriteAPI/addFavorite/')
+  return this.perform('post', '0/WriteAPI/addFavorite/')
 }
 
 removeFavorite() {

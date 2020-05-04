@@ -6,15 +6,15 @@ import {
   } from "react-router-dom";
 import './index.css';
 import App from './App';
-import { Security, LoginCallback } from '@okta/okta-react';
+import Login from './Login'
+import SignUp from './SignUp'
 import * as serviceWorker from './serviceWorker';
-
-const CALLBACK_PATH = '/implicit/callback';
 
 const routing = (
     <Router>
-            <Route exact path="/" component={App} />
-            <Route path={CALLBACK_PATH} component={LoginCallback} />
+        <Route exact path="/" component={App} />
+        <Route path="/login" component={Login}/>
+        <Route path="/signup" component={SignUp}/>
     </Router>
 )
 
