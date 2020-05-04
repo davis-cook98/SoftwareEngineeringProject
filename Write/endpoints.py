@@ -20,12 +20,12 @@ CORS(app)
 #decorators
 @app.route('/')
 @login_required
-@app.route('/WriteAPI', methods = ['GET', 'POST'])
+@app.route('/WriteAPI/addFavorite', methods = ['GET', 'POST'])
 def addFavorite(name, title):
     title = request.args.get('title')
     return add_favorite(name, title)
 
-@app.route('/WriteAPI', methods = ['GET', 'POST'])
+@app.route('/WriteAPI/removeFavorite', methods = ['GET', 'POST'])
 def removeFavorite(name, title):
     title = request.args.get('title')
     return remove_favorite(name, title)
