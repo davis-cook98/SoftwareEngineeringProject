@@ -10,7 +10,7 @@ import re
 
 #Connect to DB
 client = MongoClient('localhost', 27017)
-db = client.SoftwareEngineering 
+db = client.SoftwareEngineering
 ArtRepo = db.ArtRepo
 UserRepo = db.UserRepo
 
@@ -18,14 +18,14 @@ write = Flask(__name__)
 CORS(write)
 
 #decorators
-@write.route('/WriteAPI/addUser/', methods = ['GET', 'POST'])
+@write.route('/addUser/', methods = ['GET', 'POST'])
 def addUser():
     username = request.args.get('username')
     password = request.args.get('password')
     return add_User(username, password)
 
 @login_required
-@write.route('/WriteAPI/toggleFavorite/', methods = ['GET', 'POST'])
+@write.route('/toggleFavorite/', methods = ['GET', 'POST'])
 def toggleFavorite():
     title = request.args.get('title')
     name = request.args.get('name')
