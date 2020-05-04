@@ -20,9 +20,9 @@
 - Helped Debug the methods for the API's when Anthony and Ryan ran into problems.
 
 ### Mostafa:
--Worked with Davis to help create the frontend.
--Provided valuable input for layout.
--Helped with mocking the database.
+- Worked with Davis to help create the frontend.
+- Provided valuable input for layout.
+- Helped with mocking the database.
 
 ### Ryan:
 - Created the database connection.
