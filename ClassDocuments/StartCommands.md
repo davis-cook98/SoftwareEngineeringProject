@@ -4,9 +4,10 @@
 
 1. cd <mongodb installation dir>/bin
 2. mongo
-3. db.createCollection("ArtRepo",{capped:true, size:50000})
-4. exit
-5. mongod
+3. user SoftwareEngineering
+4. db.createCollection("ArtRepo",{capped:true, size:50000})
+5. exit
+6. mongod
 
 ## To finish installing the project
 
