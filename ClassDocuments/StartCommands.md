@@ -6,7 +6,7 @@
 2. mongo
 3. use SoftwareEngineering
 4. db.createCollection("ArtRepo",{capped:true, size:50000})
-5. db.stores.createIndex( { Title: "text", Description: "text" } )
+5. db.ArtRepo.createIndex( { Title: "text", Description: "text" } )
 6. exit
 7. mongod
 
