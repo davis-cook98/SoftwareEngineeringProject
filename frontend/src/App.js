@@ -23,6 +23,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SearchBar from './SearchBar';
 import { mainListItems} from './SideBar';
 import ArticlesList from './ArticlesList';
+import { render } from "react-dom";
+import { hasRole, isAllowed } from './auth';
 
 function Copyright() {
   return (
