@@ -6,8 +6,9 @@
 2. mongo
 3. use SoftwareEngineering
 4. db.createCollection("ArtRepo",{capped:true, size:50000})
-5. exit
-6. mongod
+5. db.ArtRepo.createIndex( { Title: "text", Description: "text" } )
+6. exit
+7. mongod
 
 ## To finish installing the project
 
