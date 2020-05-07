@@ -63,15 +63,18 @@ def get_article(title):
 def get_Favorites(uname):
     favArticles = []
     username = re.compile("^" + uname, re.IGNORECASE)
-    if UserRepo.find_one({"Username": username})["Favorites"] == "":
+    if UserRepo.find_one({"Username": username})["Favorites"] == []:
         return("no favorites")
     else:
-        for article in UserRepo.find({"Favorites": username}):
+        for article in UserRepo.find_one({"Username": username})["Favorites"]:
             favArticles.append(article)
     
     results = ArticleSchema().dump(favArticles, many=True)
     
     return (jsonify(results))
+    #fixed issue for if statement
+    #current issue in testing is list will contain {} for each fav article
+    #so 2 articles favorited will return [{}, {}]
 
 
 def find_User(uname, pword):
@@ -95,7 +98,6 @@ def get_articles(title):
     results = ArticleSchema().dump(allArticles, many=True)
 
     return(jsonify(results))
-
 
 
 if __name__ == "__main__":
