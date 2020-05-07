@@ -39,6 +39,12 @@ def getAllArticles():
     title = request.args.get('title')
     return get_articles(title)
 
+@read.route('/ReadAPI/getFavorites/')
+#@login_required
+def getFavorites():
+    uname = request.args.get('username')
+    return get_Favorites(uname)
+
 @read.route('/ReadAPI/findUser/')
 def findUser():
     uname = request.args.get('username')
@@ -54,6 +60,19 @@ def get_article(title):
     query = re.compile("^" + title, re.IGNORECASE)
     return ArticleSchema().dump(ArtRepo.find_one({"Title": query}))
 
+def get_Favorites(uname):
+    favArticles = []
+    username = re.compile("^" + uname, re.IGNORECASE)
+    if UserRepo.find_one({"Username": username})["Favorites"] == "":
+        return("no favorites")
+    else:
+        for article in UserRepo.find({"Favorites": username}):
+            favArticles.append(article)
+    
+    results = ArticleSchema().dump(favArticles, many=True)
+    
+    return (jsonify(results))
+
 
 def find_User(uname, pword):
     username = re.compile("^" + uname, re.IGNORECASE)
@@ -62,8 +81,6 @@ def find_User(uname, pword):
         return "User does not exist"
     else:
         return "True"
-
-    
 
 def get_articles(title):
     allArticles = []

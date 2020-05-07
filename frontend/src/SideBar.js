@@ -9,7 +9,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
 import { Link } from "react-router-dom";
 import { render } from "react-dom";
-import { hasRole, isAllowed } from './auth';
+import { hasRole, isAllowed } from './Auth';
 
 const user = {
   roles: ['user'],
