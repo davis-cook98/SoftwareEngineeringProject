@@ -8,6 +8,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
 import { Link } from "react-router-dom";
+import { render } from "react-dom";
+import { hasRole, isAllowed } from './auth';
+
+const user = {
+  roles: ['user'],
+  rights: ['can_favorite']
+ }
 
 export const mainListItems = (
   
