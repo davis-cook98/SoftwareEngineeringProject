@@ -2,6 +2,7 @@ import requests
 import json
 import datetime
 import pymongo
+import pprint
 
 from pymongo import MongoClient
 
@@ -18,18 +19,21 @@ def jsonParse(filename):
     #with open("NewsFiles/" + filename + ".json") as jsonFile:
     #    data = json.load(jsonFile)
 
-        articles = filename["articles"]
+    articles = filename["articles"]
 
-        for article in articles:
-            title = article["title"]
-            description = article["description"]
-            date = article["publishedAt"]
-
-            ArtRepo.update_one({"Title": title},
-                    {"Description": description,
+    for article in articles:
+        title = article["title"]
+        description = article["description"]
+        date = article["publishedAt"]
+        url = article["url"]
+        
+        if ArtRepo.find_one({"Title": title}) is None:
+            ArtRepo.insert_one({
+                    "Title": title,
+                    "Description": description,
                     "Published": date, 
-                    "InsertTime": datetime.datetime.utcnow()},
-                     upsert=True)
+                    "Url": url,
+                    "InsertTime": datetime.datetime.utcnow()})
 
 def InsertData():
     with open("../../client_secret.json") as f:

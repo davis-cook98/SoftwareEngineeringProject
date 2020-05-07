@@ -19,18 +19,21 @@ def jsonParse(filename):
     #with open("NewsFiles/" + filename + ".json") as jsonFile:
     #    data = json.load(jsonFile)
 
-        articles = filename["articles"]
+    articles = filename["articles"]
 
-        for article in articles:
-            title = article["title"]
-            description = article["description"]
-            date = article["publishedAt"]
-            
-            if ArtRepo.find({"Title": title}) is None:
-                ArtRepo.insert_one({"Title": title,
-                        "Description": description,
-                        "Published": date, 
-                        "InsertTime": datetime.datetime.utcnow()})
+    for article in articles:
+        title = article["title"]
+        description = article["description"]
+        date = article["publishedAt"]
+        url = article["url"]
+        
+        if ArtRepo.find_one({"Title": title}) is None:
+            ArtRepo.insert_one({
+                    "Title": title,
+                    "Description": description,
+                    "Published": date, 
+                    "Url": url,
+                    "InsertTime": datetime.datetime.utcnow()})
 
 def InsertData(date1, date2, keyword):
     with open("../../client_secret.json") as f:
