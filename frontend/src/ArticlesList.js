@@ -2,12 +2,17 @@ import React from "react";
 import axios from "axios";
 
 export default class ArticlesList extends React.Component {
-  state = {
-    articles: [],
-  };
 
+  constructor(props){
+    super(props);
+    this.state = {
+      articles: [],
+    }
+  }
   componentDidMount() {
-    axios.get("/ReadAPI/getAll/?title=").then((res) => {
+    var apiUrl = "/ReadAPI/getAll/?title=";
+    var search = apiUrl.concat(this.props.query)
+    axios.get(search).then((res) => {
       console.log(res);
       this.setState({ articles: res.data });
     });
