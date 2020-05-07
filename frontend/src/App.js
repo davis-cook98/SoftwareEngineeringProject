@@ -23,8 +23,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SearchBar from './SearchBar';
 import { mainListItems} from './SideBar';
 import ArticlesList from './ArticlesList';
-import { render } from "react-dom";
-import { hasRole, isAllowed } from './auth';
+
 
 function Copyright() {
   return (
@@ -37,28 +36,6 @@ function Copyright() {
 }
 
 const drawerWidth = 240;
-
-const user = {
-  roles: ['user'],
-  rights: ['can_favorite_articles']
-};
-const admin = {
-  roles: ['user', 'admin'],
-  rights: ['can_favorite_articles', 'can_view_users']
-};
-render(
-  <App user={user} />,
-  document.getElementById('root')
-);
-
-const App = ({ user }) => (
-  <div>
-    {hasRole(user, ['user']) && <p>Is User</p>}
-    {hasRole(user, ['admin']) && <p>Is Admin</p>}
-    {isAllowed(user, ['can_favorite_articles']) && <p>Can favorite Articles</p>}
-    {isAllowed(user, ['can_view_users']) && <p>Can view Users</p>}
-  </div>
-);
 
 const useStyles = makeStyles(theme => ({
   root: {
