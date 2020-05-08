@@ -31,15 +31,43 @@ def toggleFavorite():
     name = request.args.get('name')
     return toggle_favorite(name, title)
 
+@login_required
+@write.route('/togglePushed/', methods = ['GET', 'POST'])
+def togglePushed():
+    title = request.args.get('title')
+    return toggle_pushed(title)
+
 
 #definitions
 def add_User(uname, pword):
     cleanName = re.compile("^" + uname, re.IGNORECASE)
     if UserRepo.find_one({"Username": cleanName}) is None:
-        UserRepo.insert_one({"Username": uname, "Password": pword, "Favorites": []})
+        UserRepo.insert_one({"Username": uname, "Password": pword, "Favorites": [], "Pushed": []})
         return "User has been created, welcome"
     else:
         return "Username in use, please choose another one"
+
+def toggle_pushed(title):
+    query = re.compile("^" + title, re.IGNORECASE)
+    artId = ArtRepo.find_one({"Title": query})["_id"]
+    removed = False
+    for user in UserRepo.find():
+        pushedArts = UserSchema().dump(user)["Pushed"]
+        if str(artId) in pushedArts:
+            removed = True
+            pushedArts.remove(str(artId))
+            UserRepo.find_one_and_update({"Username": user["Username"]}, {"$set": {"Pushed": pushedArts}})
+        else:
+            pushedArts.append(str(artId))
+            UserRepo.find_one_and_update({"Username": user["Username"]}, {"$set": {"Pushed": pushedArts}})
+
+    if removed:
+        return("Article " + (str(title)) + " removed")
+    else:
+        return("Article " + (str(title)) + " added")           
+
+
+
 
 def toggle_favorite(uname, title):
     query = re.compile("^" + title, re.IGNORECASE)

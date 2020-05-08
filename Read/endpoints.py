@@ -4,7 +4,6 @@ from .middlewares import login_required
 from flask import Flask, json, jsonify, g, request, render_template
 from .Schemas import ArticleSchema
 from flask_cors import CORS
-from flask import request
 from bson.objectid import ObjectId
 import re
 
@@ -16,6 +15,21 @@ UserRepo = db.UserRepo
 
 read = Flask(__name__)
 CORS(read)
+
+
+NoFavorites =[{"Title":"Looks like you don't have any favorites",
+               "Description": "You should add some (when we let you)",
+               "Published": "",
+               "InsertTime":"",
+               "URL":"http://localhost:8080/"
+}]
+
+NoPushed =[{"Title":"Looks like we haven't pushed any articles",
+            "Description": "We'll do that soon",
+            "Published": "",
+            "InsertTime":"",
+            "URL":"http://localhost:8080/"
+}]
 
 #decorators
 @read.route('/ReadAPI/search/')
@@ -46,6 +60,11 @@ def getFavorites():
     uname = request.args.get('username')
     return get_Favorites(uname)
 
+@read.route('/ReadAPI/getPushed/')
+def getPushed():
+    uname = request.args.get('username')
+    return get_pushed(uname)
+
 @read.route('/ReadAPI/findUser/')
 def findUser():
     uname = request.args.get('username')
@@ -64,7 +83,7 @@ def get_article(title):
 def get_Favorites(uname):
     favArticlesID = []
     if UserRepo.find_one({"Username": uname})["Favorites"] == []:
-        return("no favorites")
+        return(jsonify(NoFavorites))
     else:
         user = UserRepo.find_one({"Username": uname})
         favArticlesID = user["Favorites"]
@@ -73,6 +92,21 @@ def get_Favorites(uname):
         favArticles.append(ArtRepo.find_one({"_id": ObjectId(str(x))}))
 
     results = ArticleSchema().dump(favArticles, many=True)
+
+    return(jsonify(results))
+
+def get_pushed(uname):
+    pushArticlesID = []
+    if UserRepo.find_one({"Username": uname})["Pushed"] == []:
+        return(jsonify(NoPushed))
+    else:
+        user = UserRepo.find_one({"Username": uname})
+        pushArticlesID = user["Pushed"]
+    pushArticles = []
+    for x in pushArticlesID:
+        pushArticles.append(ArtRepo.find_one({"_id": ObjectId(str(x))}))
+
+    results = ArticleSchema().dump(pushArticles, many=True)
 
     return(jsonify(results))
 

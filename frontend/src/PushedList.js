@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 
-export default class FavoritesList extends React.Component {
+export default class PushedList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,7 +13,7 @@ export default class FavoritesList extends React.Component {
     };
   }
   componentDidMount() {
-    var apiUrl = "/ReadAPI/getFavorites/?username=Craigers";
+    var apiUrl = "/ReadAPI/getPushed/?username=Craigers";
     var search = apiUrl.concat(this.props.query);
     axios.get(search).then((res) => {
       console.log(res);

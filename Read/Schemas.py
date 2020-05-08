@@ -14,3 +14,4 @@ class UserSchema(Schema):
     Username = fields.Str()
     Password = fields.Str()
     Favorites = fields.List(fields.Str())
+    Pushed = fields.List(fields.Str())
