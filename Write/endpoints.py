@@ -50,7 +50,7 @@ def toggle_favorite(uname, title):
         UserRepo.find_one_and_update({"Username": uname}, {"$set": {"Favorites": userFavs}}, return_document=ReturnDocument.AFTER)
         return("Article unfavorited")
     else:
-        userFavs.append(artId)
+        userFavs.append(str(artId))
         UserSchema().dump(UserRepo.find_one_and_update({"Username": uname}, {"$set": {"Favorites": userFavs}}, return_document=ReturnDocument.AFTER))
         return("Article favorited")
 

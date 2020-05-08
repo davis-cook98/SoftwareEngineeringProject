@@ -6,6 +6,7 @@ class ArticleSchema(Schema):
     Title = fields.Str()
     Description = fields.Str()
     Published = fields.Str()
+    Url = fields.Str()
     InsertTime = fields.DateTime()
 
 class UserSchema(Schema):

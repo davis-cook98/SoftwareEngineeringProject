@@ -5,6 +5,7 @@ from flask import Flask, json, jsonify, g, request, render_template
 from .Schemas import ArticleSchema
 from flask_cors import CORS
 from flask import request
+from bson.objectid import ObjectId
 import re
 
 #Connect to DB
@@ -61,20 +62,19 @@ def get_article(title):
     return ArticleSchema().dump(ArtRepo.find_one({"Title": query}))
 
 def get_Favorites(uname):
-    favArticles = []
-    username = re.compile("^" + uname, re.IGNORECASE)
-    if UserRepo.find_one({"Username": username})["Favorites"] == []:
+    favArticlesID = []
+    if UserRepo.find_one({"Username": uname})["Favorites"] == []:
         return("no favorites")
     else:
-        for article in UserRepo.find_one({"Username": username})["Favorites"]:
-            favArticles.append(article)
-    
+        user = UserRepo.find_one({"Username": uname})
+        favArticlesID = user["Favorites"]
+    favArticles = []
+    for x in favArticlesID:
+        favArticles.append(ArtRepo.find_one({"_id": ObjectId(str(x))}))
+
     results = ArticleSchema().dump(favArticles, many=True)
-    
-    return (jsonify(results))
-    #fixed issue for if statement
-    #current issue in testing is list will contain {} for each fav article
-    #so 2 articles favorited will return [{}, {}]
+
+    return(jsonify(results))
 
 
 def find_User(uname, pword):

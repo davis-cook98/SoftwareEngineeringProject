@@ -8,7 +8,6 @@ pylint = "*"
 
 [packages]
 tweepy = "*"
-pymongo = "*"
 requests = "*"
 pprint = "*"
 newsapi-python = "*"
@@ -24,6 +23,7 @@ schedule = "*"
 pylint = "*"
 werkzeug = "*"
 gunicorn = "*"
+pymongo = "*"
 
 [requires]
 python_version = "3.8"
