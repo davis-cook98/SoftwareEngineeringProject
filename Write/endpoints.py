@@ -23,6 +23,7 @@ jwt = JWTManager(write)
 with open("client_secret.json") as f:
     data = json.load(f)
     write.config['JWT_SECRET_KEY'] = data["secretKey"]
+
 #decorators
 @write.route('/addUser/', methods = ['GET', 'POST'])
 def addUser():

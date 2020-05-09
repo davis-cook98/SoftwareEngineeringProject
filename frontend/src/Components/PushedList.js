@@ -3,6 +3,7 @@ import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 
 export default class PushedList extends React.Component {
 
@@ -13,8 +14,10 @@ export default class PushedList extends React.Component {
     };
   }
   componentDidMount() {
-    var apiUrl = "/ReadAPI/getPushed/?username=Craigers";
-    var search = apiUrl.concat(this.props.query);
+    const userToken = localStorage.token;
+    const decToken = jwt_decode(userToken);
+    var apiUrl = "/ReadAPI/getPushed/?username=";
+    var search = apiUrl.concat(decToken.identity.Username);
     axios.get(search).then((res) => {
       console.log(res);
       this.setState({ articles: res.data });

@@ -181,7 +181,7 @@ export default function App() {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <Typography>News Feed</Typography>
+                <Typography variant="h5">News Feed</Typography>
                 <ExpansionPanel>
                   <ArticlesList query="" />
                 </ExpansionPanel>
@@ -189,17 +189,27 @@ export default function App() {
             </Grid>
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <Typography>Pushed Articles</Typography>
+                <Typography variant="h5">Pushed Articles</Typography>
                 <ExpansionPanel>
-                  <PushedList query="" />
+                  {localStorage.token ?(
+                  <PushedList />
+                  )
+                :(
+                  <Typography variant="h6"> Login to view pushed articles</Typography>
+                )}
                 </ExpansionPanel>
               </Paper>
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Typography>Saved Articles</Typography>
+                <Typography variant="h5">Saved Articles</Typography>
                 <ExpansionPanel>
-                  <FavoritesList query="" />
+                  {localStorage.token ?(
+                  <FavoritesList />
+                  )
+                :(
+                  <Typography variant="h6"> Login to view your favorites</Typography>
+                )}
                 </ExpansionPanel>
               </Paper>
             </Grid>
