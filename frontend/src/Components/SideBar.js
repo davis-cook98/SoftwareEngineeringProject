@@ -6,9 +6,12 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import SearchIcon from "@material-ui/icons/Search";
 import PeopleIcon from "@material-ui/icons/People";
 import { Link } from "react-router-dom";
-import { hasRole, isAllowed } from "./auth";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 class Sidebar extends React.Component {
+  logout() {
+    localStorage.removeItem("token");
+  }
   render() {
     const user = {
       roles: ["user"],
@@ -28,15 +31,24 @@ class Sidebar extends React.Component {
           </ListItemIcon>
           <ListItemText primary="Search" />
         </ListItem>
-        <ListItem button component={Link} to="/login">
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Login" />
-        </ListItem>
+        {localStorage.token ? (
+          <ListItem button onClick={this.logout}>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+        ) : (
+          <ListItem button component={Link} to="/login">
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Login" />
+          </ListItem>
+        )}
       </div>
     );
   }
 }
 
-export default (Sidebar);
+export default Sidebar;

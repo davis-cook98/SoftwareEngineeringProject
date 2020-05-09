@@ -12,7 +12,7 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const styles = theme => ({
+const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -35,28 +35,38 @@ const styles = theme => ({
 class SignUp extends React.Component {
   constructor() {
     super();
-    this.state = { username : '',
-                   password : ''
-                  }
+    this.state = { username: "", password: "", first_name: "", last_name: "" };
   }
-  
+
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-  handleSubmit = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  handleSubmit = (event) => {
     event.preventDefault();
-    const user = {
-      username: this.state.username,
-      password: this.state.password
-    } 
-    var apiUrl = '/WriteAPI/addUser/?';
-    var query = apiUrl.concat('username=' + this.state.username + '&' + 'password=' + this.state.password);
-    axios.post(query)
-    .then(res=>{
+    var apiUrl = "/WriteAPI/addUser/?";
+    var query = apiUrl.concat(
+      "username=" +
+        this.state.username +
+        "&" +
+        "password=" +
+        this.state.password +
+        "&" +
+        "first_name=" +
+        this.state.first_name + 
+        "&" +
+        "last_name=" +
+        this.state.last_name
+    );
+    axios.post(query).then((res) => {
       console.log(res);
       console.log(res.data);
+      
     })
-  }
+    .catch(Error =>{
+      console.log(Error)
+    });
+
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -69,7 +79,10 @@ class SignUp extends React.Component {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} onSubmit={this.handleSubmit} noValidate>
+          <form
+            className={classes.form}
+            noValidate
+          >
             <TextField
               variant="outlined"
               margin="normal"
@@ -95,6 +108,32 @@ class SignUp extends React.Component {
               value={this.state.password}
               onChange={this.handleChange}
               autoComplete="current-password"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="first_name"
+              label="First name"
+              type="first_name"
+              id="first_name"
+              value={this.state.first_name}
+              onChange={this.handleChange}
+              autoComplete="first_name"
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="last_name"
+              label="Last name"
+              type="last_name"
+              id="last_name"
+              value={this.state.last_name}
+              onChange={this.handleChange}
+              autoComplete="last_name"
             />
             <Button
               type="submit"
