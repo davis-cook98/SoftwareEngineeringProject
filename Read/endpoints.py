@@ -31,13 +31,26 @@ NoPushed =[{"Title":"Looks like we haven't pushed any articles",
             "URL":"http://localhost:8080/"
 }]
 
+NoSearch =[{"Title":"Looks like we haven't loaded any articles with those criteria",
+            "Description": "Please try again",
+            "Published": "",
+            "InsertTime":"",
+            "URL":"http://localhost:8080/search"
+}]
+
 #decorators
 @read.route('/ReadAPI/search/')
 def search():
     param = request.args.get('param')
     allArticles = []
-    for article in ArtRepo.find({"$text": {"$search": param}}).limit(10):
-        allArticles.append(article)
+    if str(param) == "":
+        for article in ArtRepo.find({},limit=10):
+            allArticles.append(article)
+    elif ArtRepo.find_one({"$text": {"$search": param}}) is not None:
+        for article in ArtRepo.find({"$text": {"$search": param}}).limit(10):
+            allArticles.append(article)
+    else:
+        return(jsonify(NoSearch))
     
     results = ArticleSchema().dump(allArticles, many=True)
 

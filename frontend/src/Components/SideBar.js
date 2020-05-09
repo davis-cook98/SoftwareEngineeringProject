@@ -4,7 +4,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import SearchIcon from "@material-ui/icons/Search";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import PeopleIcon from "@material-ui/icons/People";
 import { Link } from "react-router-dom";
 import { hasRole, isAllowed } from "./auth";

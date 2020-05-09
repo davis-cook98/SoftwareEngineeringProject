@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    var apiUrl = "/ReadAPI/getAll/?title=";
+    var apiUrl = "/ReadAPI/search/?param=";
     var search = apiUrl.concat(this.state.query);
     axios.get(search).then((res) => {
       console.log(res);
@@ -57,7 +57,6 @@ class SearchBar extends React.Component {
               Search
             </Button>
           </form>
-          <p></p>
           <ExpansionPanel>
             <p>
               <ul>

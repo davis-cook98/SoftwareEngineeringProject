@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,9 +18,6 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import Sidebar from "../Components/SideBar";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import ArticlesList from '../Components/ArticlesList'
 import SearchBar from "../Components/SearchBar";
 
 function Copyright() {
@@ -118,15 +115,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search(props) {
-  const useForceUpdate = () => useState()[1];
-  const [searchVal, setSearch] = React.useState("Yale");
-
-  const handleChange = event => {
-    setSearch(event.target.value);
-  }
-
-  const forceUpdate = useForceUpdate();
-
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
@@ -191,22 +179,11 @@ export default function Search(props) {
         <Container maxWidth="lg" className={classes.container}>
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <form onSubmit={forceUpdate} className="search">
                   <p>
                     <SearchBar />
                   </p>
-                  <p>
-                  </p>
-                </form>
-                <ExpansionPanel>
-                  <p>
-                  </p>
-                </ExpansionPanel>
               </Paper>
             </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>
