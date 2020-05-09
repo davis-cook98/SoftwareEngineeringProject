@@ -33,6 +33,30 @@ const styles = theme => ({
 });
 
 class SignUp extends React.Component {
+  constructor() {
+    super();
+    this.state = { username : '',
+                   password : ''
+                  }
+  }
+  
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value});
+  }
+  handleSubmit = event => {
+    event.preventDefault();
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    } 
+    var apiUrl = '/WriteAPI/addUser/?';
+    var query = apiUrl.concat('username=' + this.state.username + '&' + 'password=' + this.state.password);
+    axios.post(query)
+    .then(res=>{
+      console.log(res);
+      console.log(res.data);
+    })
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -45,16 +69,18 @@ class SignUp extends React.Component {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={this.handleSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="unsername"
+              label="Username"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -66,6 +92,8 @@ class SignUp extends React.Component {
               label="Password"
               type="password"
               id="password"
+              value={this.state.password}
+              onChange={this.handleChange}
               autoComplete="current-password"
             />
             <Button
@@ -74,8 +102,9 @@ class SignUp extends React.Component {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={this.handleSubmit}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>

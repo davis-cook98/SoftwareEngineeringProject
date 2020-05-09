@@ -17,17 +17,17 @@ class Sidebar extends React.Component {
     };
     return (
       <div>
-        <ListItem button>
+        <ListItem button button component={Link} to="/">
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button>
+        <ListItem button button component={Link} to="/search">
           <ListItemIcon>
-            <AssignmentIcon />
+            <SearchIcon />
           </ListItemIcon>
-          <ListItemText primary="Feed" />
+          <ListItemText primary="Search" />
         </ListItem>
         <ListItem button component={Link} to="/login">
           <ListItemIcon>

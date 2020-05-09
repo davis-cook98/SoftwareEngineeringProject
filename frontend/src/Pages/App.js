@@ -17,10 +17,10 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import Sidebar from "./SideBar";
-import ArticlesList from "./ArticlesList";
-import FavoritesList from "./FavoritesList";
-import PushedList from "./PushedList";
+import Sidebar from "../Components/SideBar";
+import ArticlesList from "../Components/ArticlesList";
+import FavoritesList from "../Components/FavoritesList";
+import PushedList from "../Components/PushedList";
 
 function Copyright() {
   return (

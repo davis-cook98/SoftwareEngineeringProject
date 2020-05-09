@@ -33,6 +33,27 @@ const styles = theme => ({
 });
 
 class Login extends React.Component {
+  constructor() {
+    super();
+    this.state = { username : '',
+                   password : ''
+     };
+     this.handleChange = this.handleChange.bind(this);
+    }
+  
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value});
+  }
+  handleSubmit = event => {
+    event.preventDefault();
+    var apiUrl = "/ReadAPI/findUser/?";
+    var query = apiUrl.concat('username=' + this.state.username + '&' + 'password=' + this.state.password);
+    axios.get(query)
+    .then(res=>{
+      console.log(res);
+      console.log(res.data);
+    })
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -45,16 +66,18 @@ class Login extends React.Component {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} Validate>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              value={this.state.username}
+              onChange={this.handleChange}
               autoFocus
             />
             <TextField
@@ -67,6 +90,9 @@ class Login extends React.Component {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={this.state.password}
+              onChange={this.handleChange}
+              autoFocus
             />
             <Button
               type="submit"
@@ -74,6 +100,7 @@ class Login extends React.Component {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={ this.handleSubmit }
             >
               Sign In
             </Button>

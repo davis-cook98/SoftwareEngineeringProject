@@ -4,9 +4,10 @@ import {
     BrowserRouter as Router,
     Route
   } from "react-router-dom";
-import App from './App';
-import Login from './Login'
-import SignUp from './SignUp'
+import App from './Pages/App';
+import Login from './Pages/Login'
+import SignUp from './Pages/SignUp'
+import Search from './Pages/Search'
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -14,6 +15,7 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={SignUp}/>
+        <Route path="/search" component={Search}/>
     </Router>
 )
 
