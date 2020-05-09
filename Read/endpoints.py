@@ -1,11 +1,15 @@
 import pymongo
 from pymongo import MongoClient
-from .middlewares import login_required
 from flask import Flask, json, jsonify, g, request, render_template
+from flask_bcrypt import Bcrypt 
+from flask_jwt_extended import JWTManager 
+from flask_jwt_extended import create_access_token
 from .Schemas import ArticleSchema
 from flask_cors import CORS
 from bson.objectid import ObjectId
 import re
+
+
 
 #Connect to DB
 client = MongoClient('localhost', 27017)
@@ -15,6 +19,12 @@ UserRepo = db.UserRepo
 
 read = Flask(__name__)
 CORS(read)
+# Setup encrpytion
+bcrypt = Bcrypt(read)
+jwt = JWTManager(read)
+with open("client_secret.json") as f:
+    data = json.load(f)
+    read.config['JWT_SECRET_KEY']  = data["secretKey"]
 
 
 NoFavorites =[{"Title":"Looks like you don't have any favorites",
@@ -68,7 +78,6 @@ def getAllArticles():
     return get_articles(title)
 
 @read.route('/ReadAPI/getFavorites/')
-#@login_required
 def getFavorites():
     uname = request.args.get('username')
     return get_Favorites(uname)
@@ -125,12 +134,21 @@ def get_pushed(uname):
 
 
 def find_User(uname, pword):
-    username = re.compile("^" + uname, re.IGNORECASE)
-    response = UserRepo.find_one({"Username": username, "Password": pword})
-    if response is None:
-        return "User does not exist"
+    response = UserRepo.find_one({"Username": uname})
+    if response:
+        if bcrypt.check_password_hash(response["Password"], pword):
+            jwtToken = create_access_token(identity = {
+                "First name" : response["First_name"],
+                "Last name" : response["Last_name"],
+                "Username" : response["Username"]
+            })
+            result = jsonify({"Token":jwtToken})
+        else:
+            result = jsonify({"Error": "Incorrect username or password"})
     else:
-        return "True"
+        result = jsonify({"Error": "No user found, would you like to register?"})
+
+    return(result)
 
 def get_articles(title):
     allArticles = []

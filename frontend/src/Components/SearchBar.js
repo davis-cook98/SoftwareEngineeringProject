@@ -7,6 +7,8 @@ import Divider from "@material-ui/core/Divider";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import axios from "axios";
 
+import FavoriteButton from './FavoriteButton';
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -70,6 +72,7 @@ class SearchBar extends React.Component {
                       <Typography variant="h6">{article.Title}</Typography>
                     </Link>
                     <Typography variant="h8">{article.Description}</Typography>
+                    <FavoriteButton />
                     <Divider />
                   </div>
                 ))}

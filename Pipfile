@@ -24,6 +24,8 @@ pylint = "*"
 werkzeug = "*"
 gunicorn = "*"
 pymongo = "*"
+flask-bcrypt = "*"
+flask-jwt-extended = "*"
 
 [requires]
 python_version = "3.8"

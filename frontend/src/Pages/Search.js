@@ -20,19 +20,6 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import Sidebar from "../Components/SideBar";
 import SearchBar from "../Components/SearchBar";
 
-function Copyright() {
-  return (
-    <Typography variant="body1" color="textSecondary" align="center">
-      <Link
-        color="inherit"
-        href="https://github.com/davis-cook98/SoftwareEngineeringProject"
-      >
-        View our code!
-      </Link>{" "}
-    </Typography>
-  );
-}
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
