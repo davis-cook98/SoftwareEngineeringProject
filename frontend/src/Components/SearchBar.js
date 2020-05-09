@@ -1,38 +1,86 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import axios from "axios";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: "25ch",
-  },
-}));
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: [],
+      query: ""
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-function SearchBar() {
-  return (
-    <div className={classes.root}>
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    var apiUrl = "/ReadAPI/getAll/?title=";
+    var search = apiUrl.concat(this.state.query);
+    axios.get(search).then((res) => {
+      console.log(res);
+      this.setState({ articles: res.data });
+    });
+  }
+  render() {
+    return (
       <div>
-        <TextField
-          id="standard-full-width"
-          label="Label"
-          style={{ margin: 8 }}
-          placeholder="Placeholder"
-          helperText="Full width!"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <div>
+          <form>
+            <TextField
+              name="query"
+              id="standard-full-width"
+              type="query"
+              style={{ margin: "dense" }}
+              placeholder="Enter your search"
+              fullWidth
+              value={this.state.query}
+              margin="normal"
+              onChange={this.handleChange}
+            />
+            <Button
+              value="submit"
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={this.handleSubmit}
+            >
+              Search
+            </Button>
+          </form>
+          <p></p>
+          <ExpansionPanel>
+            <p>
+              <ul>
+                {this.state.articles.map((article) => (
+                  <div>
+                    <Link
+                      href={article.Url}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <Typography variant="h6">{article.Title}</Typography>
+                    </Link>
+                    <Typography variant="h8">{article.Description}</Typography>
+                    <Divider />
+                  </div>
+                ))}
+              </ul>
+            </p>
+          </ExpansionPanel>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default SearchBar;
