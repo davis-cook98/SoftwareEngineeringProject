@@ -14,8 +14,8 @@ export default class PushedList extends React.Component {
     };
   }
   componentDidMount() {
-    const userToken = localStorage.token;
-    const decToken = jwt_decode(userToken);
+    var userToken = localStorage.token;
+    var decToken = jwt_decode(userToken);
     var apiUrl = "/ReadAPI/getPushed/?username=";
     var search = apiUrl.concat(decToken.identity.Username);
     axios.get(search).then((res) => {

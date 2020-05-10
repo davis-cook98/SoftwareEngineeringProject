@@ -202,7 +202,7 @@ export default function App() {
             </Grid>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Typography variant="h5">Saved Articles</Typography>
+                <Typography variant="h5">Favorited Articles</Typography>
                 <ExpansionPanel>
                   {localStorage.token ?(
                   <FavoritesList />

@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
+import FavoriteButton from '../Components/FavoriteButton'
+
 
 export default class FavoritesList extends React.Component {
 
@@ -14,8 +16,9 @@ export default class FavoritesList extends React.Component {
     };
   }
   componentDidMount() {
-    const userToken = localStorage.token;
-    const decToken = jwt_decode(userToken);
+    var userToken = localStorage.token;
+    var decToken = jwt_decode(userToken);
+    this.Username = decToken.identity.Username;
     var apiUrl = "/ReadAPI/getFavorites/?username=";
     var search = apiUrl.concat(decToken.identity.Username);
     axios.get(search).then((res) => {
@@ -37,6 +40,7 @@ export default class FavoritesList extends React.Component {
             <Typography variant="h8">
               { article.Description }
             </Typography>
+            <FavoriteButton _id={ article._id } username={ this.Username }/>
             <Divider />
           </div>
         ))}

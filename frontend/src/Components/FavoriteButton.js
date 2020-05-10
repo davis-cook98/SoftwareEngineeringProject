@@ -6,12 +6,13 @@ import { IconButton } from "@material-ui/core";
 class FavoriteButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
-  toggleFavorite() {
-    var apiUrl = "/toggleFavorite/?name=";
-    var query = apiUrl.concat(this.props.name + "&title=" + this.props.title);
-    axios.post(query).then((res) => {
+  toggleFavorite = () => {
+    var apiUrl = "WriteAPI/toggleFavorite/?name=";
+    var query = apiUrl.concat(this.props.username + "&_id=" + this.props._id);
+    axios.get(query).then((res) => {
       console.log(res);
     });
   }
@@ -24,7 +25,7 @@ class FavoriteButton extends React.Component {
           size="medium"
           variant="contained"
           color="primary"
-          //onClick={this.toggleFavorite}
+          onClick={this.toggleFavorite}
         >
           <FavoriteIcon />
         </IconButton>

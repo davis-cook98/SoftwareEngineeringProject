@@ -5,16 +5,17 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 
-import FavoriteButton from './FavoriteButton';
+import FavoriteButton from "./FavoriteButton";
 
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       articles: [],
-      query: ""
+      query: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,13 +26,18 @@ class SearchBar extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    var userToken = localStorage.token;
+    if (userToken === "undefined") {
+      var decToken = jwt_decode(userToken);
+      this.Username = decToken.identity.Username;
+    }
     var apiUrl = "/ReadAPI/search/?param=";
     var search = apiUrl.concat(this.state.query);
     axios.get(search).then((res) => {
       console.log(res);
       this.setState({ articles: res.data });
     });
-  }
+  };
   render() {
     return (
       <div>
@@ -72,7 +78,12 @@ class SearchBar extends React.Component {
                       <Typography variant="h6">{article.Title}</Typography>
                     </Link>
                     <Typography variant="h8">{article.Description}</Typography>
-                    <FavoriteButton />
+                    {localStorage.token ? (
+                      <FavoriteButton
+                        _id={article._id}
+                        username={this.Username}
+                      />
+                    ) : null}
                     <Divider />
                   </div>
                 ))}

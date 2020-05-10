@@ -21,6 +21,8 @@ def jsonParse(filename):
 
     articles = filename["articles"]
 
+    print(len(articles))
+
     for article in articles:
         title = article["title"]
         description = article["description"]
@@ -42,8 +44,6 @@ def InsertData():
     #URL for get request
     url = ('https://newsapi.org/v2/everything?'
             'q=College&'
-            'q=University&'
-            'q=HigherEducation&'
             'SortBy=recent&'
             'apiKey=' + data["NewsApi"])
 

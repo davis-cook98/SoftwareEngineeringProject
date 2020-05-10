@@ -13,19 +13,15 @@ class Sidebar extends React.Component {
     localStorage.removeItem("token");
   }
   render() {
-    const user = {
-      roles: ["user"],
-      rights: ["can_favorite"],
-    };
     return (
       <div>
-        <ListItem button button component={Link} to="/">
+        <ListItem button component={Link} to="/">
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button button component={Link} to="/search">
+        <ListItem button component={Link} to="/search">
           <ListItemIcon>
             <SearchIcon />
           </ListItemIcon>

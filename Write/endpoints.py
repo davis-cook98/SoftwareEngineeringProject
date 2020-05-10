@@ -8,6 +8,7 @@ from flask_jwt_extended import create_access_token
 from .Schemas import ArticleSchema, UserSchema
 from flask_cors import CORS
 from flask import request
+from bson import ObjectId
 import re
 
 #Connect to DB
@@ -35,14 +36,14 @@ def addUser():
 
 @write.route('/toggleFavorite/', methods = ['GET', 'POST'])
 def toggleFavorite():
-    title = request.args.get('title')
+    _id = request.args.get('_id')
     name = request.args.get('name')
-    return toggle_favorite(name, title)
+    return toggle_favorite(name, _id)
 
 @write.route('/togglePushed/', methods = ['GET', 'POST'])
 def togglePushed():
-    title = request.args.get('title')
-    return toggle_pushed(title)
+    _id = request.args.get('_id')
+    return toggle_pushed(_id)
 
 
 #definitions
@@ -61,9 +62,8 @@ def add_User(uname, pword, fname, lname):
     else:
         return (jsonify({"Error" : "Username in use, please choose another one"}))
 
-def toggle_pushed(title):
-    query = re.compile("^" + title, re.IGNORECASE)
-    artId = ArtRepo.find_one({"Title": query})["_id"]
+def toggle_pushed(_id):
+    artId = ObjectId(_id)
     removed = False
     for user in UserRepo.find():
         pushedArts = UserSchema().dump(user)["Pushed"]
@@ -76,16 +76,15 @@ def toggle_pushed(title):
             UserRepo.find_one_and_update({"Username": user["Username"]}, {"$set": {"Pushed": pushedArts}})
 
     if removed:
-        return("Article " + (str(title)) + " removed")
+        return("Article " + _id + " removed")
     else:
-        return("Article " + (str(title)) + " added")           
+        return("Article " + _id + " added")           
 
 
 
 
-def toggle_favorite(uname, title):
-    query = re.compile("^" + title, re.IGNORECASE)
-    artId = ArtRepo.find_one({"Title": query})["_id"]
+def toggle_favorite(uname, _id):
+    artId = ObjectId(_id)
     userFavs = UserSchema().dump(UserRepo.find_one({"Username": uname}))["Favorites"]
     if str(artId) in userFavs:
         userFavs.remove(str(artId))
