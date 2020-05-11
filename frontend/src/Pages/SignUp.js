@@ -150,6 +150,9 @@ class SignUp extends React.Component {
                 <Grid item component={Link} to="/">
                   <Typography>Don't want to commit?</Typography>
                 </Grid>
+                <Grid item component={Link} to="/login">
+                <Typography>Back to login</Typography>
+              </Grid>
               </Grid>
             </Grid>
           </form>

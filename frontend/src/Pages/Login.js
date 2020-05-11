@@ -112,6 +112,9 @@ class Login extends React.Component {
               <Grid item component={Link} to="/signup">
                 <Typography>Don't have an account? Sign up here!</Typography>
               </Grid>
+              <Grid item component={Link} to="/">
+                <Typography>Return to home screen</Typography>
+              </Grid>
             </Grid>
           </form>
         </div>
