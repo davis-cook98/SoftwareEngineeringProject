@@ -1,19 +1,17 @@
 import React from "react";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import axios from "axios";
 import { IconButton } from "@material-ui/core";
 
-//Renders Favorite Button (tiny heart under articles)
-class FavoriteButton extends React.Component {
+class PushedButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
     };
   }
-  toggleFavorite = () => {
-    //Setup API call and send it
-    var apiUrl = "WriteAPI/toggleFavorite/?name=";
-    var query = apiUrl.concat(this.props.username + "&_id=" + this.props._id);
+  togglePushed = () => {
+    var apiUrl = "WriteAPI/togglePushed/?_id=";
+    var query = apiUrl.concat(this.props._id);
     axios.get(query).then((res) => {
       console.log(res);
     });
@@ -27,13 +25,13 @@ class FavoriteButton extends React.Component {
           size="medium"
           variant="contained"
           color="primary"
-          onClick={this.toggleFavorite}
+          onClick={this.togglePushed}
         >
-          <FavoriteIcon />
+          <ArrowUpwardIcon />
         </IconButton>
       </div>
     );
   }
 }
 
-export default FavoriteButton;
+export default PushedButton;

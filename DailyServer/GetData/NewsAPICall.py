@@ -8,16 +8,11 @@ from pymongo import MongoClient
 
 #Connect to DB
 client = MongoClient('localhost', 27017)
-
 db = client.SoftwareEngineering
- 
 ArtRepo = db.ArtRepo
 
 #Parse json made by NewsAPICall and insert into MongoDB
 def jsonParse(filename):
-
-    #with open("NewsFiles/" + filename + ".json") as jsonFile:
-    #    data = json.load(jsonFile)
 
     articles = filename["articles"]
 
@@ -48,15 +43,10 @@ def InsertData():
             'apiKey=' + data["NewsApi"])
 
     response = requests.get(url)
-
     jsonData = response.json()
-
-    #Saves the output to json for processing
-    #with open("NewsFiles/" + dateString + ".json", "w") as dateFile:
-    #    json.dump(jsonData, dateFile)
-    # print(response.json())
 
     #Calls an aux function to insert the data
     jsonParse(jsonData)
 
+#Calls function
 InsertData()

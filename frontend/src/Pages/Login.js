@@ -4,16 +4,15 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
-import { withStyles } from '@material-ui/core/styles';
-import { withRouter } from 'react-router-dom'
+import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
-const styles = theme => ({
+//Setup local styles
+const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -33,33 +32,40 @@ const styles = theme => ({
   },
 });
 
+//Create login page
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = { username : '',
-                   password : ''
-     };
-     this.handleChange = this.handleChange.bind(this);
-    }
-  
+    this.state = { username: "", password: "" };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value});
-  }
-  handleSubmit = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  handleSubmit = (event) => {
     event.preventDefault();
+    //Set our Api call, then send it
     var apiUrl = "/ReadAPI/findUser/?";
-    var query = apiUrl.concat('username=' + this.state.username + '&' + 'password=' + this.state.password);
-    axios.get(query)
-    .then(res=>{
-      console.log(res);
-      console.log(res.data);
-      localStorage.setItem("token", res.data.Token);
-      this.props.history.push('/')
-    })
-    .catch(Error=>{
-      console.log(Error);
-    })
-  }
+    var query = apiUrl.concat(
+      "username=" +
+        this.state.username +
+        "&" +
+        "password=" +
+        this.state.password
+    );
+    axios
+      .get(query)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        localStorage.setItem("token", res.data.Token);
+        this.props.history.push("/");
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  };
   render() {
     const { classes } = this.props;
     return (
@@ -106,7 +112,7 @@ class Login extends React.Component {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={ this.handleSubmit }
+              onClick={this.handleSubmit}
             >
               Sign In
             </Button>
@@ -120,10 +126,9 @@ class Login extends React.Component {
             </Grid>
           </form>
         </div>
-        <Box mt={8}></Box>
       </Container>
     );
   }
 }
 
-export default withStyles(styles)(Login)
+export default withStyles(styles)(Login);

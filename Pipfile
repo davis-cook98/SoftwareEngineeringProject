@@ -27,6 +27,7 @@ pymongo = "*"
 flask-bcrypt = "*"
 flask-jwt-extended = "*"
 pytest = "*"
+mongomock = "*"
 
 [requires]
 python_version = "3.8"

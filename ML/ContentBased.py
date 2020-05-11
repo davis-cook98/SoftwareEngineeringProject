@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from pymongo import MongoClient
 
+#CURRENTLY NOT IN USE. PLANS TO IMPLEMENT LATER
 
 client = MongoClient('localhost', 27017)
 

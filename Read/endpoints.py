@@ -17,6 +17,7 @@ db = client.SoftwareEngineering
 ArtRepo = db.ArtRepo
 UserRepo = db.UserRepo
 
+#Setup Flask app
 read = Flask(__name__)
 CORS(read)
 # Setup encrpytion
@@ -26,7 +27,7 @@ with open("client_secret.json") as f:
     data = json.load(f)
     read.config['JWT_SECRET_KEY']  = data["secretKey"]
 
-
+#3 dummy articles for missing data
 NoFavorites =[{"Title":"Looks like you don't have any favorites",
                "Description": "You should add some (when we let you)",
                "Published": "",
@@ -49,44 +50,38 @@ NoSearch =[{"Title":"Looks like we haven't loaded any articles with those criter
 }]
 
 #decorators
+
+#Our search function on a custom text index
 @read.route('/ReadAPI/search/')
 def search():
     param = request.args.get('param')
-    allArticles = []
-    if str(param) == "":
-        for article in ArtRepo.find({},limit=10):
-            allArticles.append(article)
-    elif ArtRepo.find_one({"$text": {"$search": param}}) is not None:
-        for article in ArtRepo.find({"$text": {"$search": param}}).limit(10):
-            allArticles.append(article)
-    else:
-        return(jsonify(NoSearch))
-    
-    results = ArticleSchema().dump(allArticles, many=True)
+    return search_func(param)
 
-    return(jsonify(results))
-
-
+#Get a single article baesd on a given criteria
 @read.route('/ReadAPI/getOne/')
 def getSingleArticle():
     title = request.args.get('title')
     return get_article(title)
 
+#Get all articles based on a given title
 @read.route('/ReadAPI/getAll/')
 def getAllArticles():
     title = request.args.get('title')
     return get_articles(title)
 
+#Get all of the favorites for a user
 @read.route('/ReadAPI/getFavorites/')
 def getFavorites():
     uname = request.args.get('username')
     return get_Favorites(uname)
 
+#Get all pushed articles
 @read.route('/ReadAPI/getPushed/')
 def getPushed():
     uname = request.args.get('username')
     return get_pushed(uname)
 
+#Find a given user based on uname and pword
 @read.route('/ReadAPI/findUser/')
 def findUser():
     uname = request.args.get('username')
@@ -94,9 +89,8 @@ def findUser():
     return find_User(uname, pword)
 
 
-#definitions
-def get_article2():
-    return ArticleSchema().dump(ArtRepo.find_one())
+#Definitions
+#All of the helperfunctions for our routes
 
 def get_article(title):
     query = re.compile("^" + title, re.IGNORECASE)
@@ -160,6 +154,21 @@ def get_articles(title):
         for article in ArtRepo.find({"Title" : query},limit=5):
             allArticles.append(article)
 
+    results = ArticleSchema().dump(allArticles, many=True)
+
+    return(jsonify(results))
+
+def search_func(param):
+    allArticles = []
+    if str(param) == "":
+        for article in ArtRepo.find({},limit=10):
+            allArticles.append(article)
+    elif ArtRepo.find_one({"$text": {"$search": param}}) is not None:
+        for article in ArtRepo.find({"$text": {"$search": param}}).limit(10):
+            allArticles.append(article)
+    else:
+        return(jsonify(NoSearch))
+    
     results = ArticleSchema().dump(allArticles, many=True)
 
     return(jsonify(results))

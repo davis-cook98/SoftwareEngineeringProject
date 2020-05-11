@@ -18,7 +18,7 @@ import Sidebar from "../Components/SideBar";
 import SearchBar from "../Components/SearchBar";
 
 const drawerWidth = 240;
-
+//Setup local styles
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -98,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Render search page
 export default function Search(props) {
-
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {

@@ -7,9 +7,9 @@ import Divider from "@material-ui/core/Divider";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
-
 import FavoriteButton from "./FavoriteButton";
 
+//Returns the Search Bar and Articles on Search.js
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -26,6 +26,7 @@ class SearchBar extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    //Get jwt from localStorage, decodes it, sets up API call, sends call
     var userToken = localStorage.token;
     if (userToken === "undefined") {
       var decToken = jwt_decode(userToken);

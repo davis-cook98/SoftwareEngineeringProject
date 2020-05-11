@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -12,6 +11,7 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+//Setup local styles
 const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -32,6 +32,7 @@ const styles = (theme) => ({
   },
 });
 
+//Render Sign Up page
 class SignUp extends React.Component {
   constructor() {
     super();
@@ -43,6 +44,7 @@ class SignUp extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
+    //Set our Api call, then send it
     var apiUrl = "/WriteAPI/addUser/?";
     var query = apiUrl.concat(
       "username=" +
@@ -52,20 +54,21 @@ class SignUp extends React.Component {
         this.state.password +
         "&" +
         "first_name=" +
-        this.state.first_name + 
+        this.state.first_name +
         "&" +
         "last_name=" +
         this.state.last_name
     );
-    axios.post(query).then((res) => {
-      console.log(res);
-      console.log(res.data);
-      this.props.history.push('/login')
-    })
-    .catch(Error =>{
-      console.log(Error)
-    });
-
+    axios
+      .post(query)
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+        this.props.history.push("/login");
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
   };
   render() {
     const { classes } = this.props;
@@ -79,10 +82,7 @@ class SignUp extends React.Component {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form
-            className={classes.form}
-            noValidate
-          >
+          <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -151,13 +151,12 @@ class SignUp extends React.Component {
                   <Typography>Don't want to commit?</Typography>
                 </Grid>
                 <Grid item component={Link} to="/login">
-                <Typography>Back to login</Typography>
-              </Grid>
+                  <Typography>Back to login</Typography>
+                </Grid>
               </Grid>
             </Grid>
           </form>
         </div>
-        <Box mt={8}></Box>
       </Container>
     );
   }

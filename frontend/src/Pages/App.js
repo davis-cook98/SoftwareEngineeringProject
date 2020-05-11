@@ -37,6 +37,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
+//Setup local styles
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -116,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Renders the main page
 export default function App() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);

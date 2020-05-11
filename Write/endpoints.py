@@ -17,8 +17,10 @@ db = client.SoftwareEngineering
 ArtRepo = db.ArtRepo
 UserRepo = db.UserRepo
 
+#Setup Flask app
 write = Flask(__name__)
 CORS(write)
+#Setup encruption
 bcrypt = Bcrypt(write)
 jwt = JWTManager(write)
 with open("client_secret.json") as f:
@@ -26,6 +28,8 @@ with open("client_secret.json") as f:
     write.config['JWT_SECRET_KEY'] = data["secretKey"]
 
 #decorators
+
+#Add a user based on their first_name, last_name, uname, pword to database
 @write.route('/addUser/', methods = ['GET', 'POST'])
 def addUser():
     username = request.args.get('username')
@@ -34,12 +38,15 @@ def addUser():
     last_name = request.args.get('last_name')
     return add_User(username, password, first_name, last_name)
 
+#Toggles an article into favorites based on article id and user
 @write.route('/toggleFavorite/', methods = ['GET', 'POST'])
 def toggleFavorite():
     _id = request.args.get('_id')
     name = request.args.get('name')
     return toggle_favorite(name, _id)
 
+#Toggles a pushed article for all users
+#Current implementation needs to be reworked
 @write.route('/togglePushed/', methods = ['GET', 'POST'])
 def togglePushed():
     _id = request.args.get('_id')
@@ -47,6 +54,8 @@ def togglePushed():
 
 
 #definitions
+#All of the helperfunctions for our routes
+
 def add_User(uname, pword, fname, lname):
     cleanName = re.compile("^" + uname, re.IGNORECASE)
     password = bcrypt.generate_password_hash(pword).decode("utf-8")

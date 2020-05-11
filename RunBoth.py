@@ -1,8 +1,9 @@
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.serving import run_simple
-
 from Read.endpoints import read as ReadAPI
 from Write.endpoints import write as WriteAPI
+
+#Runs both flask APIs on the same port with different paths
 
 application = DispatcherMiddleware(ReadAPI, {
     '/WriteAPI': WriteAPI

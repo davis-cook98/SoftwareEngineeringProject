@@ -5,8 +5,8 @@ import Divider from '@material-ui/core/Divider';
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
 
+//Returns all pushed articles for a user (middle of app.js)
 export default class PushedList extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +14,7 @@ export default class PushedList extends React.Component {
     };
   }
   componentDidMount() {
+    //Get jwt from localStorage, decodes it, setup API call, API call
     var userToken = localStorage.token;
     var decToken = jwt_decode(userToken);
     var apiUrl = "/ReadAPI/getPushed/?username=";

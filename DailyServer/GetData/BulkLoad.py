@@ -6,18 +6,16 @@ import pymongo
 
 from pymongo import MongoClient
 
+#Code used to bulk-load the database for testing/demoing
+#One time use and values below will need to changed
+
 #Connect to DB
 client = MongoClient('localhost', 27017)
-
 db = client.SoftwareEngineering
- 
 ArtRepo = db.ArtRepo
 
 #Parse json made by NewsAPICall and insert into MongoDB
 def jsonParse(filename):
-
-    #with open("NewsFiles/" + filename + ".json") as jsonFile:
-    #    data = json.load(jsonFile)
 
     articles = filename["articles"]
 
@@ -49,16 +47,8 @@ def InsertData(date1, date2, keyword):
             'apiKey=' + data["NewsApi"])
 
     response = requests.get(url)
-
     jsonData = response.json()
 
-    #Saves the output to json for processing
-    #with open("NewsFiles/" + dateString + ".json", "w") as dateFile:
-    #    json.dump(jsonData, dateFile)
-    # print(response.json())
-
-    #Calls an aux function to insert the data
-    #pprint.pprint(jsonData)
     if "articles" in jsonData:
         jsonParse(jsonData)
 
@@ -70,6 +60,7 @@ keywords = ["school", "eduscol", "university", "department of education", "colle
 startDates = ["2020-04-03", "2020-04-07", "2020-04-10", "2020-04-13", "2020-04-17", "2020-04-24", "2020-04-29", "2020-05-02"]
 endDates = ["2020-04-06", "2020-04-09", "2020-04-12", "2020-04-16", "2020-04-23", "2020-04-28", "2020-05-01", "2020-05-06"]
 
+#Loop on keywords and dates
 for word in keywords:
     for (date1, date2) in zip(startDates, endDates):
         InsertData(date1, date2, word)

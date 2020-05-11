@@ -8,8 +8,9 @@ import PeopleIcon from "@material-ui/icons/People";
 import { Link } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+//Renders the sidebar for navigation
 class Sidebar extends React.Component {
-
+  //Remove jwt from localStorage, effectively "logging someone out" and reloads page
   logout() {
     localStorage.removeItem("token");
     window.location.reload(true);

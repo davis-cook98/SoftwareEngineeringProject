@@ -6,9 +6,8 @@ import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import FavoriteButton from '../Components/FavoriteButton'
 
-
+//Gets the users favorites, and returns them (bottom of app.js)
 export default class FavoritesList extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +15,7 @@ export default class FavoritesList extends React.Component {
     };
   }
   componentDidMount() {
+    //Get jwt from localStorage, decode it, setup query, call
     var userToken = localStorage.token;
     var decToken = jwt_decode(userToken);
     this.Username = decToken.identity.Username;
@@ -26,7 +26,6 @@ export default class FavoritesList extends React.Component {
       this.setState({ articles: res.data });
     });
   }
-
   render() { 
     return (
       <ul>

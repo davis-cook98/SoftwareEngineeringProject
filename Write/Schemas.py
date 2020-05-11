@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields
 
-#Schemas, may be updated later
+#Schemas for our database collections
 class ArticleSchema(Schema):
     _id = fields.Str()
     Title = fields.Str()
