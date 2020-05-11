@@ -9,12 +9,14 @@ import { Link } from "react-router-dom";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 class Sidebar extends React.Component {
+
   logout() {
     localStorage.removeItem("token");
+    window.location.reload(true);
   }
   render() {
     return (
-      <div>
+      <div>        
         <ListItem button component={Link} to="/">
           <ListItemIcon>
             <DashboardIcon />

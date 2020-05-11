@@ -26,6 +26,7 @@ gunicorn = "*"
 pymongo = "*"
 flask-bcrypt = "*"
 flask-jwt-extended = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.8"

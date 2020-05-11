@@ -60,7 +60,7 @@ class SignUp extends React.Component {
     axios.post(query).then((res) => {
       console.log(res);
       console.log(res.data);
-      
+      this.props.history.push('/login')
     })
     .catch(Error =>{
       console.log(Error)

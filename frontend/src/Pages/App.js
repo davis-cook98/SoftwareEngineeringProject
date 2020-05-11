@@ -188,7 +188,7 @@ export default function App() {
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <Paper className={fixedHeightPaper}>
+              <Paper className={classes.paper}>
                 <Typography variant="h5">Pushed Articles</Typography>
                 <ExpansionPanel>
                   {localStorage.token ?(

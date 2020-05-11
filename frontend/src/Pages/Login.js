@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router-dom'
 import axios from "axios";
 
 const styles = theme => ({
@@ -53,6 +54,7 @@ class Login extends React.Component {
       console.log(res);
       console.log(res.data);
       localStorage.setItem("token", res.data.Token);
+      this.props.history.push('/')
     })
     .catch(Error=>{
       console.log(Error);
