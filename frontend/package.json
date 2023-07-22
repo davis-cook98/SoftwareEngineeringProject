@@ -14,7 +14,7 @@
     "react": "0.14.0",
     "react-dom": "0.0.0-d7382b6c4",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start-mac": "PORT=8080 react-scripts start",
